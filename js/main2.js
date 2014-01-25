@@ -63,6 +63,26 @@ var mapa3 = [
     [1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1]
 ];
 
+
+
+
+
+var GuineaPig = Class.create(Sprite, {
+    initialize: function(x, y) {
+        Sprite.call(this, 32, 32);
+        this.image = game.assets['assets/player.gif'];
+        this.x = x;
+        this.y = y;
+        this.opacity = 1;//透明度
+        this.speed =3;
+
+    },
+    onenterframe: function() {
+
+    }
+});
+
+// -----------------------------------------------------------------------------
 enchant();
 
 var game = new Game(640, 320);
@@ -77,11 +97,9 @@ window.onload = function() {
         map.loadData(mapa1);
         map.collisionData = mapa3;
 
+        //  GuipeaPig(posX, posY);
+        var player = new GuineaPig(0, 0);
 
-        var player = new Sprite(32, 32);
-        player.image = game.assets['assets/player.gif'];
-        player.x = 2 * 16;
-        player.y = 96;
         // player.dir = DIR_DOWN;
 
         game.addEventListener(enchant.Event.RIGHT_BUTTON_DOWN, function() {
