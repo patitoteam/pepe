@@ -43,7 +43,9 @@ var Player = Class.create(Sprite, {
         if (map.hitTest(player.x+8,player.y+32) === false){
             this.jump = false;
             //this.yy += 0.6;
-	    this.yy += 2;
+	    if(this.yy < 20)
+		this.yy += 2;
+	    console.log(this.yy);
         }else{
             this.jump = true;
             this.yy =0;
