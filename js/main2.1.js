@@ -172,7 +172,8 @@ window.onload = function() {
                 friction = -this.vx;
             }
             // para que no se vaya volando
-            if (!game.input.up) {
+            // if (!game.input.up || --this.jumpBoost < 0 || bar002.value <= 20)
+            if (!game.input.up ) {
                 this.ay = 0;
                 bar002.value += 2;
                 if(bar002.value >= 150){
@@ -187,7 +188,7 @@ window.onload = function() {
             }
             if (game.input.up) {
                 if(bar002.value >= 20){
-                    this.jumpBoost = 2;
+                    this.jumpBoost = 132;
                     this.ay = -0.5;
                     bar002.value -= 3;
                 } else{
@@ -240,20 +241,21 @@ window.onload = function() {
                 this.width-10, this.height-3
             );
             this.jumping = true;
-            if (dest.x < -stage.x) {
-                dest.x = -stage.x;
-                this.vx = 0;
-            }
-            if (dest.x > -stage.x+250) {
-                dest.x = -stage.x+250;
-                this.vx = 0;
-            }
+            // detenia la escena
+            // if (dest.x < -stage.x) {
+            //     dest.x = -stage.x;
+            //     this.vx = 0;
+            // }
+            // if (dest.x > -stage.x+250) {
+            //     dest.x = -stage.x+250;
+            //     this.vx = 0;
+            // }
 
             // 574
             while (true) {
                 var boundary, crossing;
                 var dx = dest.x - this.x - 5;
-                var dy = dest.y - this.y - 3;
+                var dy = dest.y - this.y -3;
 
                 if (dx > 0 && Math.floor(dest.right / 16) != Math.floor((dest.right - dx) / 16)) {
                     console.log('1');
