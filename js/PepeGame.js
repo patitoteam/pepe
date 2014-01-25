@@ -8,6 +8,7 @@ PepeGame.prototype = {
   init: function(w, h ,assets) {
     this.gameObj = new Game(w, h);
     this.gameObj.fps = 30;
+    this.gameObj.preload(assets);
     this.gameObj.rootScene.backgroundColor = 'black';
 
     this.gameObj.onload = this.gameLoaded.bind(this);
