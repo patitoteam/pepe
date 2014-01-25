@@ -1,9 +1,13 @@
 enchant();
 
-var Rat = Class.create(Sprite, {
-    initialize:  function(x, y){
-        Sprite.call(this, 16, 16); // Modificar por tamaño real de sprit
-        this.image = game.assets['cara.png']; // Crear la imagen y adicionarlo a los preload
+var player;
+
+var Enemy = Class.create(Sprite, {
+    initialize:  function(x, y, size, type, evil){
+        Sprite.call(this, size, size); // Modificar por tamaño real de sprit
+        this.size = size;
+        this.evil = evil;
+        this.image = game.assets[type + '.png']; // Crear la imagen y adicionarlo a los preload
         this.x = x;
         this.y = y;
         this.xx = 2;//Velocidad en x
@@ -14,7 +18,7 @@ var Rat = Class.create(Sprite, {
         
     },
     onenterframe: function(){
-        if(this.dir == RIGHT && map.hitTest(this.x + 16, this.y)){
+        if(this.dir == RIGHT && map.hitTest(this.x + this.size, this.y)){
             this.xx = -this.xx;
             this.dir = LEFT;
             this.frame= [42,42,43,43];
@@ -23,10 +27,16 @@ var Rat = Class.create(Sprite, {
             this.dir = RIGHT;
             this.frame = [40,40,41,41];
         }
-        if(!map.hitTest(this.x, this.y + 16) && !map.hitTest(this.x + 16, this.y + 16))
+        if(!map.hitTest(this.x, this.y + this.size) && !map.hitTest(this.x + this.size, this.y + this.size))
             this.y += this.yy;
         
         this.x += this.xx;
+
+
+        if(this.evil && this.intersect(player) && this.x % 3 == 0)
+            player.opacity = 0.5;
+        else
+            player.opacity = 1;
     }
 });
 
