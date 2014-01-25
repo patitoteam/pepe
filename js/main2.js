@@ -63,7 +63,11 @@ var mapa3 = [
     [1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1]
 ];
 
-
+enchant();
+/******/
+var RIGHT = 0;
+var LEFT = 1;
+var map;
 
 
 
@@ -74,16 +78,34 @@ var GuineaPig = Class.create(Sprite, {
         this.x = x;
         this.y = y;
         this.opacity = 1;//透明度
-        this.speed =3;
+        this.xx = 2;//Velocidad en x
+        this.yy = 2;
+        this.frame = 0;
+        this.dir = 0;
 
     },
     onenterframe: function() {
-
+        if(this.dir == RIGHT && map.hitTest(this.x + 16, this.y + 32)){
+            this.xx = -this.xx;
+            this.dir = LEFT;
+            this.frame= 0;
+        }else if(this.dir == LEFT && map.hitTest(this.x, this.y + 32)){
+            this.xx = this.xx;
+            this.dir = RIGHT;
+            this.frame = 0;
+        }
+        if(!map.hitTest(this.x, this.y + 32))
+            this.y += this.yy;
+        if(game.input.left){
+            this.x -= this.xx;
+        }
+        if(game.input.right){
+            this.x += this.xx;
+        }
     }
 });
 
 // -----------------------------------------------------------------------------
-enchant();
 
 var game = new Game(640, 320);
 game.fps = 16;
@@ -92,7 +114,7 @@ game.preload('assets/map1.png', 'assets/player.gif');
 window.onload = function() {
 
     game.onload = function() {
-        var map = new Map(16, 16);
+        map = new Map(16, 16)
         map.image = game.assets['assets/map1.png'];
         map.loadData(mapa1);
         map.collisionData = mapa3;
