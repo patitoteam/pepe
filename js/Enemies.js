@@ -3,14 +3,15 @@ enchant();
 var player;
 
 var Enemy = Class.create(Sprite, {
-    initialize:  function(x, y, size, type, evil){
+    initialize:  function(x, y, size, type, velocity, evil){
         Sprite.call(this, size, size); // Modificar por tamaño real de sprit
+
         this.size = size;
         this.evil = evil;
         this.image = game.assets[type + '.png']; // Crear la imagen y adicionarlo a los preload
         this.x = x;
         this.y = y;
-        this.xx = 2;//Velocidad en x
+        this.xx = velocity;//Velocidad en x
         this.yy = 1;
         this.frame = [40,40,41,41];
         this.dir = 0; // direction 0: right 1: left
