@@ -23,6 +23,7 @@ PepeGame.prototype = {
   },
   startGame: function() {
     this.gameObj.start();
+    this.ace = 1;
   },
   addScene: function(scene) {
     this.currentScene = scene;
@@ -41,7 +42,8 @@ PepeGame.prototype = {
     this.sprite.x -= 15;
   },
   rightKeyHandler: function() {
-    this.sprite.x += 15;
+    this.sprite.x += 15*this.ace;
+    this.ace += 0.5;
   },
   gameLoaded: function() {
     console.log('game loaded');
