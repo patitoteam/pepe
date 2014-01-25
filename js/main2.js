@@ -71,6 +71,7 @@ var map;
 var gameOver = false;
 var falling = true;
 
+var player;
 
 var Rat = Class.create(Sprite, {
     initialize:  function(x, y){
@@ -95,10 +96,16 @@ var Rat = Class.create(Sprite, {
             this.dir = RIGHT;
             this.frame = [40,40,41,41];
         }
+
         if(!map.hitTest(this.x, this.y + 16))
             this.y += this.yy;
 
         this.x += this.xx;
+	if(this.within(player)) {
+	    player.opacity = 0.5;
+	} else {
+	    player.opacity = 1;
+	}
     }
 });
 
@@ -123,9 +130,15 @@ var GuineaPig = Class.create(Sprite, {
     },
     onenterframe: function() {
 
-		if(game.input.up){
-           	this.y -= (this.yy*1.5);
-        }
+    	// Saltar
+	if(game.input.up){
+	    if(!this.jump) {
+		this.tl.moveBy(0, (-1)*this.yy*10, 5);
+		this.jump = true;
+	    }
+        } else {
+	    this.jump = false;
+	}
 
 
 
@@ -173,7 +186,7 @@ window.onload = function() {
         // map.collisionData = mapa3;
 
         //  GuipeaPig(posX, posY);
-        var player = new GuineaPig(32, 32);
+        player = new GuineaPig(0, 0);
         var rata = new Rat(10, 0);
 
         var stage = new Group();
