@@ -126,7 +126,8 @@ var LEFT = 1;
 var GuineaPig = Class.create(Sprite, {
     initialize: function(x, y) {
         Sprite.call(this, 32, 32);
-        this.image = game.assets['assets/player.gif'];
+        //this.image = game.assets['assets/player.gif'];
+	this.image = game.assets['assets/guinea-pig.png'];
         this.x = x;
         this.y = y;
         this.opacity = 1;
@@ -185,7 +186,7 @@ var GuineaPig = Class.create(Sprite, {
 
 var game = new Game(640, 320);
 game.fps = 16;
-game.preload('assets/map1.png', 'assets/player.gif', 'cara.png');
+game.preload('assets/map1.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png');
 
 window.onload = function() {
 
