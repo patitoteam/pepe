@@ -122,10 +122,11 @@ var GuineaPig = Class.create(Sprite, {
         this.jumpcnt=0;
     },
     onenterframe: function() {
-    	
+
+    	// Saltar
 	if(game.input.up){
 	    if(!this.jump) {
-		this.tl.moveBy(this.xx, (-1)*this.yy*7, 5);
+		this.tl.moveBy(0, (-1)*this.yy*7, 5);
 		this.jump = true;
 	    }
         } else {
