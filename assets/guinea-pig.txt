@@ -1,0 +1,1 @@
+normal run1 run2 damage
