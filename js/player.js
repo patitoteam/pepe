@@ -1,7 +1,7 @@
 enchant();
 var Player = Class.create(Sprite, {
     initialize: function(x, y) {
-        Sprite.call(this, 32, 16);
+        Sprite.call(this, 32, 32);
         this.image = game.assets['assets/guinea-pig.png'];
         this.x = x;
         this.y = y;
@@ -41,7 +41,7 @@ var Player = Class.create(Sprite, {
 
         player.y += this.yy;
 
-        if (map.hitTest(player.x+8,player.y+32)==false){
+        if (map.hitTest(player.x+8,player.y+32) === false){
             this.jump = false;
             this.yy += 0.6;
         }else{
@@ -49,12 +49,12 @@ var Player = Class.create(Sprite, {
             this.yy =0;
         }
 
-        if (map.hitTest(player.x+8,player.y+32)){
+        if (map.hitTest(player.x+8+8,player.y+32)){
             this.y = Math.floor(this.y / 16) * 16;
         }
-        if (map.hitTest(player.x+8,player.y)){
+        if (map.hitTest(player.x+8+8,player.y)){
             this.y = Math.floor(this.y / 16) * 16+15;
-            this.jumpcnt=0;this.yy+=3
+            this.jumpcnt=0;this.yy+=3;
         }
 
 
@@ -62,13 +62,13 @@ var Player = Class.create(Sprite, {
         if (game.input.right )this.xx = this.speed;
 
 
-        if(game.input.left == false && game.input.right == false){
+        if(game.input.left === false && game.input.right === false){
             if(this.xx>0)this.xx-=this.speed;
             if(this.xx<0)this.xx+=this.speed;
         }
 
         player.x += this.xx;
-        
+
 
         if (map.hitTest(player.x,player.y+8 + 8)){
             console.log('lugar 1');
@@ -77,7 +77,7 @@ var Player = Class.create(Sprite, {
 
         if (map.hitTest(player.x+16+16,player.y+8)){
             console.log('lugar 2');
-            this.x = Math.floor(this.x / 16) * 16;
+            this.x = Math.floor(this.x / (16+16)) * (16+16);
         }
 
         if (map.hitTest(player.x+8,player.y+32)){
