@@ -19,12 +19,13 @@ var Rat = Class.create(Sprite, {
             this.dir = LEFT;
             this.frame= [42,42,43,43];
         }else if(this.dir == LEFT && map.hitTest(this.x, this.y + 16)){
-            this.xx = this.xx;
+            this.xx = -this.xx;
             this.dir = RIGHT;
             this.frame = [40,40,41,41];
         }
         if(!map.hitTest(this.x, this.y + 16))
             this.y += this.yy;
+        
         this.x += this.xx;
     }
 });
