@@ -86,8 +86,13 @@ var GuineaPig = Class.create(Sprite, {
     },
     onenterframe: function() {
         // Avanzar
+
         if (game.input.right) {
             this.x += this.xx;
+            if (game.frame%2==0) {
+                this.frame++;
+                this.frame%=4;
+            }
         } else if (game.input.left) {
             this.x -= this.xx ;
         }
@@ -102,6 +107,7 @@ var GuineaPig = Class.create(Sprite, {
             gameOver = true;
             alert('game over');
         }
+
     }
 });
 
