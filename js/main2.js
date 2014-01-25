@@ -54,10 +54,10 @@ var mapa3 = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-    [1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1]
@@ -72,6 +72,40 @@ var gameOver = false;
 var falling = true;
 
 
+var Rat = Class.create(Sprite, {
+    initialize:  function(x, y){
+        Sprite.call(this, 16, 16); // Modificar por tamaño real de sprit
+        this.image = game.assets['cara.png']; // Crear la imagen y adicionarlo a los preload
+        this.x = x;
+        this.y = y;
+        this.xx = 2;//Velocidad en x
+        this.yy = 2;
+        this.frame = [40,40,41,41];
+        this.dir = 0; // direction 0: right 1: left
+        //stage.addChild(this);
+        
+    },
+    onenterframe: function(){
+        if(this.dir == RIGHT && map.hitTest(this.x + 16, this.y)){
+            this.xx = -this.xx;
+            this.dir = LEFT;
+            this.frame= [42,42,43,43];
+        }else if(this.dir == LEFT && map.hitTest(this.x, this.y)){
+            this.xx = -this.xx;
+            this.dir = RIGHT;
+            this.frame = [40,40,41,41];
+        }
+        if(!map.hitTest(this.x, this.y + 16))
+            this.y += this.yy;
+        
+        this.x += this.xx;
+    }
+});
+
+/******/
+var RIGHT = 0;
+var LEFT = 1;
+
 var GuineaPig = Class.create(Sprite, {
     initialize: function(x, y) {
         Sprite.call(this, 32, 32);
@@ -83,31 +117,80 @@ var GuineaPig = Class.create(Sprite, {
         this.yy = 9.81;
         this.frame = 0;
         this.dir = 0;
+        this.speed =3;
+        this.jump = false;
+        this.jumpcnt=0;
     },
     onenterframe: function() {
-        // Avanzar
+    	/*
+		if(game.input.up){
+            if(this.jump){
+                this.jump=false;
+                this.jumpcnt=11;
+            }
+        }
 
+        if(this.jumpcnt){
+            this.jumpcnt--;
+            if(game.input.up){
+                this.yy= -4.6;
+            }else{
+                this.jumpcnt=0;
+            }
+        }
+
+        player.y += this.yy;
+
+        if (map.hitTest(player.x+8,player.y+16)==false){
+            this.jump = false;
+            this.yy += 0.6;
+        }else{
+            this.jump = true;
+            this.yy =0;
+        }
+
+
+
+        if (map.hitTest(player.x+8,player.y+16)){this.y=Math.floor(this.y / 16) * 16;}
+        if (map.hitTest(player.x+8,player.y)){this.y=Math.floor(this.y / 16) * 16+15;this.jumpcnt=0;this.yy+=3}
+
+
+        if (game.input.left )this.xx = -this.speed;
+        if (game.input.right )this.xx = this.speed;
+
+
+        if(game.input.left == false && game.input.right == false){
+            if(this.xx>0)this.xx-=this.speed;
+            if(this.xx<0)this.xx+=this.speed;
+        }
+*/
+
+        // Avanzar
         if (game.input.right) {
-            this.x += this.xx;
+        	if(!map.hitTest(this.x + 32, this.y))
+            	this.x += this.xx;
+
             if (game.frame%2==0) {
                 this.frame++;
                 this.frame%=4;
             }
         } else if (game.input.left) {
-            this.x -= this.xx ;
+        	if(!map.hitTest(this.x, this.y+ 16))
+            	this.x -= this.xx ;
         }
 
-        if(!map.hitTest(this.x+16, this.y + 32) && !gameOver) {
+        if(!map.hitTest(this.x+32, this.y + 32) && !gameOver)
           this.y += this.yy;
-        }
-        if (map.hitTest(this.x+16, this.y + 32)) {
-          console.log('colision');
-        }
+        
         if (this.y >= Game.instance.height - 32 && !gameOver) {
             gameOver = true;
             alert('game over');
         }
-
+		//Si no se presiona ninguna direccion el frame pasa a uno
+        if(!game.input.left && !game.input.right && !game.input.up && ! game.input.down)
+        	this.frame = 0;
+        
+        
     }
 });
 
@@ -115,7 +198,7 @@ var GuineaPig = Class.create(Sprite, {
 
 var game = new Game(640, 320);
 game.fps = 16;
-game.preload('assets/map1.png', 'assets/player.gif');
+game.preload('assets/map1.png', 'assets/player.gif', 'cara.png');
 
 window.onload = function() {
 
@@ -127,11 +210,12 @@ window.onload = function() {
 
         //  GuipeaPig(posX, posY);
         var player = new GuineaPig(0, 0);
-
+        var rata = new Rat(10, 0);
 
         var stage = new Group();
         stage.addChild(map);
         stage.addChild(player);
+        stage.addChild(rata);
 
         game.rootScene.addChild(stage);
 
