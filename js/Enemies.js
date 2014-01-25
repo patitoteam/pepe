@@ -7,7 +7,7 @@ var Rat = Class.create(Sprite, {
         this.x = x;
         this.y = y;
         this.xx = 2;//Velocidad en x
-        this.yy = 2;
+        this.yy = 1;
         this.frame = [40,40,41,41];
         this.dir = 0; // direction 0: right 1: left
         //stage.addChild(this);
@@ -23,7 +23,7 @@ var Rat = Class.create(Sprite, {
             this.dir = RIGHT;
             this.frame = [40,40,41,41];
         }
-        if(!map.hitTest(this.x, this.y + 16))
+        if(!map.hitTest(this.x, this.y + 16) && !map.hitTest(this.x + 16, this.y + 16))
             this.y += this.yy;
         
         this.x += this.xx;
