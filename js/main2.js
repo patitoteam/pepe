@@ -208,6 +208,19 @@ window.onload = function() {
         var rata = new Rat(10, 0);
 
         var stage = new Group();
+        var menuScene = Scene();
+
+
+        menuScene.addChild(Menu("Start",50,50));
+        menuScene.addChild(Menu("Help",50,100));
+        menuScene.addChild(Menu("Exit",50,150));
+
+
+        game.pushScene(menuScene);
+
+
+
+
         stage.addChild(map);
         stage.addChild(player);
         stage.addChild(rata);
