@@ -14,11 +14,11 @@ var Rat = Class.create(Sprite, {
         
     },
     onenterframe: function(){
-        if(this.dir == RIGHT && map.hitTest(this.x + 16, this.y + 16)){
+        if(this.dir == RIGHT && map.hitTest(this.x + 16, this.y)){
             this.xx = -this.xx;
             this.dir = LEFT;
             this.frame= [42,42,43,43];
-        }else if(this.dir == LEFT && map.hitTest(this.x, this.y + 16)){
+        }else if(this.dir == LEFT && map.hitTest(this.x, this.y)){
             this.xx = -this.xx;
             this.dir = RIGHT;
             this.frame = [40,40,41,41];

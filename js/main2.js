@@ -122,48 +122,12 @@ var GuineaPig = Class.create(Sprite, {
         this.jumpcnt=0;
     },
     onenterframe: function() {
-    	/*
+    	
 		if(game.input.up){
-            if(this.jump){
-                this.jump=false;
-                this.jumpcnt=11;
-            }
+           	this.y -= (this.yy*1.5);
         }
 
-        if(this.jumpcnt){
-            this.jumpcnt--;
-            if(game.input.up){
-                this.yy= -4.6;
-            }else{
-                this.jumpcnt=0;
-            }
-        }
-
-        player.y += this.yy;
-
-        if (map.hitTest(player.x+8,player.y+16)==false){
-            this.jump = false;
-            this.yy += 0.6;
-        }else{
-            this.jump = true;
-            this.yy =0;
-        }
-
-
-
-        if (map.hitTest(player.x+8,player.y+16)){this.y=Math.floor(this.y / 16) * 16;}
-        if (map.hitTest(player.x+8,player.y)){this.y=Math.floor(this.y / 16) * 16+15;this.jumpcnt=0;this.yy+=3}
-
-
-        if (game.input.left )this.xx = -this.speed;
-        if (game.input.right )this.xx = this.speed;
-
-
-        if(game.input.left == false && game.input.right == false){
-            if(this.xx>0)this.xx-=this.speed;
-            if(this.xx<0)this.xx+=this.speed;
-        }
-*/
+       
 
         // Avanzar
         if (game.input.right) {
