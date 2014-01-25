@@ -111,8 +111,17 @@ var Rat = Class.create(Sprite, {
             this.y += this.yy;
 
         this.x += this.xx;
+
+	// Choque con el enemigo.
 	if(this.within(player)) {
 	    player.opacity = 0.5;
+
+	    // Animación.
+	    console.log(player.xx);
+	    if(player.xx > 0)
+		player.frame = 3;
+	    if(player.xx < 0)
+		player.frame = 4;
 	} else {
 	    player.opacity = 1;
 	}
@@ -126,12 +135,11 @@ var LEFT = 1;
 var GuineaPig = Class.create(Sprite, {
     initialize: function(x, y) {
         Sprite.call(this, 32, 32);
-        //this.image = game.assets['assets/player.gif'];
 	this.image = game.assets['assets/guinea-pig.png'];
         this.x = x;
         this.y = y;
         this.opacity = 1;
-        this.xx = 9;//Velocidad en x
+        this.xx = 10;//Velocidad en x
         this.yy = 9.81;
         this.frame = 0;
         this.dir = 0;
@@ -151,20 +159,23 @@ var GuineaPig = Class.create(Sprite, {
 	    this.jump = false;
 	}
 
-
-
-        // Avanzar
+	// Movimiento.
         if (game.input.right) {
-        	if(!map.hitTest(this.x , this.y))
+            // Avanzar.
+            if(!map.hitTest(this.x , this.y))
             	this.x += this.xx;
 
-            if (game.frame%2==0) {
-                this.frame++;
-                this.frame%=4;
-            }
+	    // Animación.
+	    this.frame++;
+	    this.frame%=3;
         } else if (game.input.left) {
-        	if(!map.hitTest(this.x, this.y+ 16))
+	    // Retroceder.
+            if(!map.hitTest(this.x, this.y+ 16))
             	this.x -= this.xx ;
+
+	    // Animación.
+	    this.frame--;
+	    if(this.frame < 5) this.frame = 7;
         }
 
         if(!map.hitTest(this.x+32, this.y + 32) && !gameOver)
@@ -174,18 +185,13 @@ var GuineaPig = Class.create(Sprite, {
             gameOver = true;
             alert('game over');
         }
-		//Si no se presiona ninguna direccion el frame pasa a uno
-        if(!game.input.left && !game.input.right && !game.input.up && ! game.input.down)
-        	this.frame = 0;
-
-
     }
 });
 
 // -----------------------------------------------------------------------------
 
 var game = new Game(640, 320);
-game.fps = 16;
+game.fps = 17;
 game.preload('assets/map1.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png');
 
 window.onload = function() {
