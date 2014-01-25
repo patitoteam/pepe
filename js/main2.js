@@ -123,9 +123,14 @@ var GuineaPig = Class.create(Sprite, {
     },
     onenterframe: function() {
     	
-		if(game.input.up){
-           	this.y -= (this.yy*1.5);
-        }
+	if(game.input.up){
+	    if(!this.jump) {
+		this.tl.moveBy(this.xx, (-1)*this.yy*7, 5);
+		this.jump = true;
+	    }
+        } else {
+	    this.jump = false;
+	}
 
        
 
