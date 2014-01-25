@@ -111,8 +111,17 @@ var Rat = Class.create(Sprite, {
             this.y += this.yy;
 
         this.x += this.xx;
+
+	// Choque con el enemigo.
 	if(this.within(player)) {
 	    player.opacity = 0.5;
+
+	    // Animación.
+	    console.log(player.xx);
+	    if(player.xx > 0)
+		player.frame = 3;
+	    if(player.xx < 0)
+		player.frame = 4;
 	} else {
 	    player.opacity = 1;
 	}
@@ -126,12 +135,11 @@ var LEFT = 1;
 var GuineaPig = Class.create(Sprite, {
     initialize: function(x, y) {
         Sprite.call(this, 32, 32);
-        //this.image = game.assets['assets/player.gif'];
 	this.image = game.assets['assets/guinea-pig.png'];
         this.x = x;
         this.y = y;
         this.opacity = 1;
-        this.xx = 9;//Velocidad en x
+        this.xx = 10;//Velocidad en x
         this.yy = 9.81;
         this.frame = 0;
         this.dir = 0;
@@ -183,7 +191,7 @@ var GuineaPig = Class.create(Sprite, {
 // -----------------------------------------------------------------------------
 
 var game = new Game(640, 320);
-game.fps = 16;
+game.fps = 17;
 game.preload('assets/map1.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png');
 
 window.onload = function() {
