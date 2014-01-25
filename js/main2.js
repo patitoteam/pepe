@@ -141,20 +141,23 @@ var GuineaPig = Class.create(Sprite, {
 	    this.jump = false;
 	}
 
-
-
-        // Avanzar
+	// Movimiento.
         if (game.input.right) {
-        	if(!map.hitTest(this.x , this.y))
+            // Avanzar.
+            if(!map.hitTest(this.x , this.y))
             	this.x += this.xx;
 
-            if (game.frame%2==0) {
-                this.frame++;
-                this.frame%=4;
-            }
+	    // Animación.
+	    this.frame++;
+	    this.frame%=3;
         } else if (game.input.left) {
-        	if(!map.hitTest(this.x, this.y+ 16))
+	    // Retroceder.
+            if(!map.hitTest(this.x, this.y+ 16))
             	this.x -= this.xx ;
+
+	    // Animación.
+	    this.frame--;
+	    if(this.frame < 5) this.frame = 7;
         }
 
         if(!map.hitTest(this.x+32, this.y + 32) && !gameOver)
@@ -164,11 +167,6 @@ var GuineaPig = Class.create(Sprite, {
             gameOver = true;
             alert('game over');
         }
-		//Si no se presiona ninguna direccion el frame pasa a uno
-        if(!game.input.left && !game.input.right && !game.input.up && ! game.input.down)
-        	this.frame = 0;
-
-
     }
 });
 
