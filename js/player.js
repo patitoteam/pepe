@@ -99,6 +99,13 @@ var Player = Class.create(Sprite, {
             game.rootScene.addChild(stage);
         }
 
+	if (!game.secondTheme && game.currentLevel === 3) {
+	    game.firstTheme.stop();
+	    game.secondTheme = game.assets["music/why_so_serious.mp3"].clone();
+            game.secondTheme.volume = 0.9;
+            game.secondTheme.play();
+	}
+
         if (game.input.right) {
     	    this.xx = this.speed;
     	    this.goingToRight = true;
