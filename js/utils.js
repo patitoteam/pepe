@@ -289,7 +289,7 @@
 
 enchant();
 var menuMaker = function(resource, h, callback){
-    var label = new Sprite(250,50);
+    var label = new Sprite(310,150);
     label.image = game.assets[resource];
     label.x = Math.floor(game.width / 2) - Math.floor(label.width/2);
     label.y = h;
@@ -427,7 +427,7 @@ Game.prototype.endGame = function(text){
     endScene.height = this.height;
     endScene.addChild(sp);
 
-    sp.tl.fadeTo(1, 25);
+    sp.tl.fadeTo(2, 25);
     this.pushScene(endScene);
 };
 
@@ -447,10 +447,10 @@ Game.prototype.winGame = function(asset) {
 
 Game.prototype.showMessage = function(asset) {
     var endScene = Scene();
-    var sp = new Sprite(255, 125);
+    var sp = new Sprite(596, 298);
     sp.image = this.assets[asset];
-    // endScene.backgroundColor = 'rgba(255,255,255,0.3)';
-    sp.opacity = 0.1;
+    endScene.backgroundColor = 'rgba(255,255,255)';
+    sp.opacity = 0.4;
     sp.frame = 0;
     sp.x = Math.floor(game.width / 2) - Math.floor(sp.width/2);
     sp.y = Math.floor(game.height / 2) - Math.floor(sp.height/2);

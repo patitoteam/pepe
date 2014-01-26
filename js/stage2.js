@@ -129,10 +129,14 @@ function getSecondLevel(game, player) {
             stage  : stage,
         });
 
+//<<<<<<< HEAD
 /*<<<<<<< HEAD
 =======*/
-  game.showMessage('assets/menu/game-over.png');
+  //game.showMessage('assets/menu/game-over.png');
 /*>>>>>>> 980255e281b1683d4caf0342766c800427ea93af*/
+//=======
+  game.showMessage('assets/messages/molestos.png');
+//>>>>>>> 86c828d6cf12d81c776c14d11315b86054f2db57
 
   return stage;
 }
@@ -255,7 +259,7 @@ function getThirdLevel(game, player) {
     stage  : stage,
   });
 
-  game.showMessage('assets/menu/game-over.png');
+  game.showMessage('assets/messages/mentira.png');
     // Cherries.
     var cherries = [
 //	{x: 32, y: 45},
