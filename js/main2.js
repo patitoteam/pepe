@@ -75,19 +75,19 @@ var Rat = Class.create(Sprite, {
 
         this.x += this.xx;
 
-	// Choque con el enemigo.
-	if(this.within(player)) {
-	    player.opacity = 0.5;
+        // Choque con el enemigo.
+        if(this.within(player)) {
+            player.opacity = 0.5;
 
-	    // Animación.
-	    console.log(player.xx);
-	    if(player.xx > 0)
-		player.frame = 3;
-	    if(player.xx < 0)
-		player.frame = 4;
-	} else {
-	    player.opacity = 1;
-	}
+            // Animación.
+            console.log(player.xx);
+            if(player.xx > 0)
+            player.frame = 3;
+            if(player.xx < 0)
+            player.frame = 4;
+        } else {
+            player.opacity = 1;
+        }
     }
 });
 
@@ -112,33 +112,33 @@ var GuineaPig = Class.create(Sprite, {
     },
     onenterframe: function() {
 
-    	// Saltar
+    // Saltar
 	if(game.input.up){
-	    if(!this.jump) {
-		this.tl.moveBy(0, (-1)*this.yy*10, 5);
-		this.jump = true;
-	    }
+        if(!this.jump) {
+        this.tl.moveBy(0, (-1)*this.yy*10, 5);
+       this.jump = true;
+        }
         } else {
-	    this.jump = false;
-	}
+        this.jump = false;
+    }
 
-	// Movimiento.
+    // Movimiento.
         if (game.input.right) {
             // Avanzar.
             if(!map.hitTest(this.x + 32, this.y))
-            	this.x += this.xx;
+                this.x += this.xx;
 
-	    // Animación.
-	    this.frame++;
-	    this.frame%=3;
+        // Animación.
+        this.frame++;
+        this.frame%=3;
         } else if (game.input.left) {
-	    // Retroceder.
+        // Retroceder.
             if(!map.hitTest(this.x, this.y+ 16))
-            	this.x -= this.xx ;
+                this.x -= this.xx ;
 
-	    // Animación.
-	    this.frame--;
-	    if(this.frame < 5) this.frame = 7;
+        // Animación.
+        this.frame--;
+        if(this.frame < 5) this.frame = 7;
         }
 
         if(!map.hitTest(this.x+32, this.y + 32) && !gameOver)
@@ -155,11 +155,12 @@ var GuineaPig = Class.create(Sprite, {
 
 var game = new Game(640, 320);
 game.fps = 16;
-game.preload('assets/bright-roof.png', 'assets/bright-roof-2.png','assets/bright-background.png','assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png');
+game.preload('assets/apple.png','assets/bright-roof.png', 'assets/bright-roof-2.png','assets/bright-background.png','assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png', 'assets/powerups/bright/cherry-sprite.png');
 
 window.onload = function() {
 
     game.onload = function() {
+        self = this;
         // Load the background
         var bg = new Sprite(640, 320);
         bg.image = game.assets['assets/bright-background.png'];
@@ -184,7 +185,7 @@ window.onload = function() {
         //player = new GuineaPig(30, 0); /******************/
 
         player = new Player(30, 0);
-        var rata = new Rat(10, 0);
+
 
         var stage = new Group();
 
@@ -194,16 +195,14 @@ window.onload = function() {
         var menuScene = Scene();
 
 
-        menuScene.addChild(Menu("Start",50,50));
-        menuScene.addChild(Menu("Help",50,100));
-        menuScene.addChild(Menu("Exit",50,150));
-
-
+        game.stage = stage;
+        menuScene.addChild(menuMaker("Start",50,50));
+        menuScene.addChild(menuMaker("Help",50,100));
+        menuScene.addChild(menuMaker("Exit",50,150));
         game.pushScene(menuScene);
 
 
-
-
+        var life = Label();
         stage.addChild(map);
         stage.addChild(player);
         stage.addChild(rata);
@@ -212,9 +211,34 @@ window.onload = function() {
         game.currentStage = stage;
 
         game.rootScene.addChild(stage);
+        game.rootScene.setInterval(500, function(){
+            //player.life -= 10;
+            life.text = player.life;
+            life.color = '#000';
+            life.font = "8px cursive";
+            life.x = 50;
+            life.y = 50;
+            stage.addChild(life);
+        });
+
+        var strawberry = new Fruit({
+            image: self.assets['assets/powerups/bright/cherry-sprite.png'],
+            player: player,
+            map: self.map,
+            width: 16,
+            height: 16,
+            x: 50,
+            y: 150,
+            val: 50,
+            stage: stage,
+            game: game
+        });
+
+        stage.addChild(strawberry);
 
         game.rootScene.addEventListener(Event.ENTER_FRAME, (function(e) {
             // Realiza el scroll del background
+
             var x = Math.min((game.width - 16) / 2 - player.x, 0);
             var y = Math.min((game.height - 16) / 2 - player.y, 0);
             x = Math.max(game.width, x + this.map.width) - this.map.width;

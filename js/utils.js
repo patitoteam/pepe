@@ -286,7 +286,7 @@
 //     return b;
 // };
 enchant();
-var Menu = function(text, x, y){
+var menuMaker = function(text, x, y){
     var label = Label()
     label.text = text;
     label.x = x;
@@ -300,4 +300,151 @@ var Menu = function(text, x, y){
     });
     return label;
 }
+
+var Timeout = Class.create({
+    initialize: function(delay, callback){
+        this._delay = delay;
+        this._time = Date.now() + delay;
+        this._callback = callback;
+        this._cleared = false;
+        this._paused = true;
+        this._pausedTime = Date.now();
+        this.resume();
+    },
+    cleared: {
+        get: function(){ return this._cleared; }
+    },
+    paused: {
+        get: function(){ return this._paused; }
+    },
+    clear: function(){
+        if(this.cleared)
+            return;
+
+        this.pause();
+        this._cleared = true;
+    },
+    pause: function(){
+        if(this.cleared || this.paused)
+            return;
+        clearTimeout(this._id);
+        this._paused = true;
+        this._pausedTime = Date.now();
+    },
+    resume: function(){
+        if(this.cleared || !this.paused)
+            return;
+        this._paused = false;
+        this._time += Date.now() - this._pausedTime;
+        this._id = setTimeout(function(){
+            this._cleared = true;
+            this._callback.call(null);
+        }.bind(this), this._time - Date.now());
+    }
+});
+
+var Interval = Class.create(Timeout, {
+    initialize: function(delay, callback){
+        Timeout.call(this, delay, callback);
+    },
+    resume: function(){
+        if(this.cleared || !this.paused)
+            return;
+        this._paused = false;
+        this._time += Date.now() - this._pausedTime;
+        this._id = setTimeout(function func(){
+            this._time = Date.now() + this._delay;
+            this._id = setTimeout(func.bind(this), this._delay);
+            this._callback.call(null);
+        }.bind(this), this._time - Date.now());
+    }
+});
+
+
+Scene.prototype.setTimeout = function(time, callback){
+    var timeout = new Timeout(time, function(){
+        callback.call(this);
+        this.removeEventListener('exit', pause);
+        this.removeEventListener('unstack', clear);
+    }.bind(this));
+
+    var pause = function(){ timeout.pause(); };
+    var clear = function(){ timeout.clear(); };
+
+    this.addEventListener('exit', pause);
+    this.addEventListener('unstack', clear);
+
+    timeout.clear = function(scene, clear){
+        return function(){
+            scene.removeEventListener('exit', pause);
+            scene.removeEventListener('unstack', clear);
+            clear.call(this);
+        };
+    }(this, timeout.clear);
+
+    return timeout;
+};
+
+Scene.prototype.setInterval = function(time, callback){
+    var interval = new Interval(time, function(){
+        callback.call(this);
+        this.removeEventListener('exit', pause);
+        this.removeEventListener('unstack', clear);
+    }.bind(this));
+
+    var pause = function(){ interval.pause(); };
+    var clear = function(){ interval.clear(); };
+
+    this.addEventListener('exit', pause);
+    this.addEventListener('unstack', clear);
+
+    interval.clear = function(scene, clear){
+        return function(){
+            scene.removeEventListener('exit', pause);
+            scene.removeEventListener('unstack', clear);
+            clear.call(this);
+        };
+    }(this, interval.clear);
+
+    return interval;
+};
+
+Game.prototype.endGame = function(text){
+    var endScene = Scene();
+    var label = Label();
+    label.text = text;
+    endScene.addChild(label);
+    this.pushScene(endScene);
+}
+
+
+
+
+var Fruit = Class.create( Sprite, {
+    initialize: function(args){
+        Sprite.call(this, {
+        });
+
+        this.x= args.x;
+        this.y= args.y;
+        this.width= args.width;
+        this.val = args.val;
+        this.image= args.image;
+        this.height= args.height;
+
+        this.player = args.player;
+        this.map = args.map;
+        this.stage = args.stage;
+        this.game = args.game;
+        self = this;
+        this.addEventListener('enterframe',function(){
+
+            if( self.intersect(self.player) ){
+                self.player.life = self.player.life+ self.val;
+                self.stage.removeChild(self);
+            }
+        });
+    }
+});
+
 
