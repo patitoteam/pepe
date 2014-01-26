@@ -88,6 +88,12 @@ function getSecondLevel(game, player) {
 
   stage.addChild(new Enemy(32 * 96, 32 * 7, 32 , 'worm', 1, 1, true));
   stage.addChild(new Enemy(32 * 98, 32 * 7, 32 , 'worm', 1, 1, true));
+  stage.addChild(new Enemy(32 * 96, 32 * 7, 32 , 'worm', 1, 1, true));
+  stage.addChild(new Enemy(32 * 98, 32 * 7, 32 , 'worm', 1, 1, true));
+
+
+  stage.addChild(new Enemy(32 * 130, 32 * 8, 32 , 'zombie', 7, 7, true, 7));
+  stage.addChild(new Enemy(32 * 140, 32 * 8, 32 , 'zombie', 7, 7, true, 7));
 
     // Cherries.
     var cherries = [
@@ -123,10 +129,18 @@ function getSecondLevel(game, player) {
             stage  : stage,
         });
 
+//<<<<<<< HEAD
+/*<<<<<<< HEAD
+=======*/
+  //game.showMessage('assets/menu/game-over.png');
+/*>>>>>>> 980255e281b1683d4caf0342766c800427ea93af*/
+//=======
   game.showMessage('assets/messages/molestos.png');
+//>>>>>>> 86c828d6cf12d81c776c14d11315b86054f2db57
 
   return stage;
 }
+
 function getThirdLevel(game, player) {
   var stage = new Group();
   map = new Map(32, 32);
@@ -165,8 +179,82 @@ function getThirdLevel(game, player) {
   stage.addChild(map);
   stage.addChild(player);
 
-  leafs.tl.fadeOut(70).fadeIn(70).loop();
+  /*quitar*/
+  stage.addChild(new Enemy(32 * 30, 39 * 1, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, true));
+  /*quitar*/
 
+  stage.addChild(new Enemy(32 * 8, 32 * 7, 32 , 'zombie', 4, 1, true, 7));
+  stage.addChild(new Enemy(32 * 23, 32 * 3, 32 , 'zombie', 4, 1, true, 7));
+  stage.addChild(new Enemy(32 * 21, 32 * 5, 32 , 'zombie', 4, 1, true, 7));
+  stage.addChild(new Enemy(32 * 37, 32 * 6, 32 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 37, 32 * 6, 16 , 'bee', 10, 0, true));
+
+  stage.addChild(new Enemy(32 * 39, 32 * 6, 32 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 39, 32 * 6, 16 , 'bee', 10, 0, true));
+
+  stage.addChild(new Enemy(32 * 54, 32 * 6, 32 , 'zombie', 4, 1, true, 7));
+  stage.addChild(new Enemy(32 * 60, 32 * 7, 32 , 'zombie', 2, 1, true, 7));
+
+  stage.addChild(new Enemy(32 * 57, 32 * 3, 32 , 'zombie', 5, 1, true, 7));
+
+  
+  stage.addChild(new Enemy(32 * 70, 32 * 3, 32 , 'zombie', 2, 1, true, 7));
+
+  stage.addChild(new Enemy(32 * 86, 32 * 7, 32 , 'zombie', 2, 1, true, 7));
+  stage.addChild(new Enemy(32 * 91, 32 * 7, 32 , 'zombie', 2, 1, true, 7));
+  stage.addChild(new Enemy(32 * 88, 32 * 3, 32 , 'zombie', 1, 1, true, 7));
+
+/*<<<<<<< HEAD*/
+
+  stage.addChild(new Enemy(32 * 108, 32 * 5, 32 , 'honeycomb', 0, 0, true));
+  stage.addChild(new Enemy(32 * 115, 32 * 4, 32 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 109, 32 * 4, 16 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 112, 32 * 4, 16 , 'bee', 8, 0, true));
+  
+  stage.addChild(new Enemy(32 * 35, 32 * 2, 32 , 'zombie', 4, 5, true, 7));
+  stage.addChild(new Enemy(32 * 33, 32 * 4, 32 , 'zombie', 4, 7, true, 7));
+  stage.addChild(new Enemy(32 * 53, 32 * 3, 32 , 'zombie', 7, 7, true, 7));
+
+  stage.addChild(new Enemy(32 * 63, 32 * 5, 32 , 'honeycomb', 0, 0, true));
+
+  stage.addChild(new Enemy(32 * 59, 32 * 6, 16 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 63, 32 * 6, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 62, 32 * 7, 16 , 'bee', 7, 0, true));
+  stage.addChild(new Enemy(32 * 53, 32 * 7, 32 , 'zombie', 7, 7, true, 7));
+  stage.addChild(new Enemy(32 * 57, 32 * 7, 32 , 'zombie', 6, 6, true, 7));
+  stage.addChild(new Enemy(32 * 57, 32 * 7, 32 , 'zombie', 6, 6, true, 7));
+  stage.addChild(new Enemy(32 * 59, 32 * 7, 32 , 'zombie', 7, 7, true, 7));
+
+  /*El gran final*/
+
+  stage.addChild(new Enemy(32 * 120, 32 * 7, 32 , 'zombie', 5, 7, true, 7));
+  //stage.addChild(new Enemy(32 * 123, 32 * 7, 32 , 'zombie', 13, 6, true, 7));
+  stage.addChild(new Enemy(32 * 123, 32 * 5, 16 , 'bee', 11, 0, true));
+  stage.addChild(new Enemy(32 * 124, 32 * 6, 16 , 'bee', 5, 0, true));
+  
+  stage.addChild(new Enemy(32 * 127, 32 * 7, 32 , 'zombie', 13, 6, true, 7));
+
+  //stage.addChild(new Enemy(32 * 129, 32 * 7, 32 , 'zombie', 10, 6, true, 7));
+  stage.addChild(new Enemy(32 * 129, 32 * 5, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 130, 32 * 6, 16 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 129, 32 * 7, 16 , 'bee', 14, 0, true));
+
+  stage.addChild(new Enemy(32 * 132, 32 * 7, 32 , 'zombie', 8, 6, true, 7));
+  stage.addChild(new Enemy(32 * 133, 32 * 7, 32 , 'zombie', 5, 6, true, 7));
+  
+  stage.addChild(new Enemy(32 * 135, 32 * 7, 32 , 'zombie', 12, 6, true, 7));
+  stage.addChild(new Enemy(32 * 136, 32 * 7, 32 , 'zombie', 8, 6, true, 7));
+  stage.addChild(new Enemy(32 * 135, 32 * 6, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 136, 32 * 5, 16 , 'bee', 10, 0, true));
+
+  stage.addChild(new Enemy(32 * 138, 32 * 7, 32 , 'zombie', 12, 6, true, 7));
+  stage.addChild(new Enemy(32 * 139, 32 * 7, 32 , 'zombie', 8, 6, true, 7));
+  stage.addChild(new Enemy(32 * 139, 32 * 5, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 138, 32 * 6, 16 , 'bee', 10, 0, true));
+
+/*=======*/
   window.healthbar = new HealthBar({
     stage  : stage,
   });
@@ -192,5 +280,8 @@ function getThirdLevel(game, player) {
         }));
     }
 
+/*>>>>>>> 96db6a64392807d6c3f5a76c6ccfffcebb060f75*/
+leafs.tl.fadeOut(70).fadeIn(70).loop();
   return stage;
+    
 }

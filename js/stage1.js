@@ -54,6 +54,7 @@ function getFirstLevel(game, player) {
   stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
   stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 10, 0, true));
   stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, true));
+  
 
     // Cherries.
     var cherries = [

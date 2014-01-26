@@ -35,7 +35,8 @@ game.preload(
     'music/nivel_terminado.wav',
     'music/salto.wav',
     'music/why_so_serious.mp3',
-    'worm.png'
+    'worm.png',
+    'zombie.png'
 );
 
 game.fps = 15;
@@ -50,7 +51,7 @@ var falling = true;
 var player;
 var level = 1;
 var Enemy = Class.create(Sprite, {
-    initialize:  function(x, y, size, type, velocityX, velocityY, evil){
+    initialize:  function(x, y, size, type, velocityX, velocityY, evil, fotogramas){
         Sprite.call(this, size, size); // Modificar por tamaño real de sprit
 
         this.size = size;
@@ -58,22 +59,48 @@ var Enemy = Class.create(Sprite, {
         this.image = game.assets[type + '.png']; // Crear la imagen y adicionarlo a los preload
         this.x = x;
         this.y = y;
+        this.bckX = x;
+        this.bckY = y;
         this.xx = velocityX;//Velocidad en x
         this.yy = velocityY;
         this.frame = [0,0,1,1];
         this.dir = 0; // direction 0: right 1: left
+        this.fotogramas = fotogramas;
+        if(fotogramas){
+            this.derecha = [];
+            this.izquierda = [];
+            for(var i = 0; i < fotogramas; i++){
+                this.derecha.push(i);
+                this.izquierda.push(i + fotogramas);
+            }
+            this.frame = this.derecha;
+        }
+        this.repetir = function(){};
     },
     onenterframe: function(){
+        
+        this.repetir();
+        /*Volver al inicio cuando muere*/
+        if(this.y >= game.height){
+            this.x = this.bckX;
+            this.y = this.bckY;
+        }
 
         if(this.dir == RIGHT && map.hitTest(this.x + this.size, this.y + this.size / 2)){
             this.xx = -this.xx;
             this.dir = LEFT;
-            this.frame= [2,2,3,3];
+            if(this.fotogramas)
+                this.frame = this.izquierda;
+            else
+                this.frame= [2,2,3,3];
 
         }else if(this.dir == LEFT && map.hitTest(this.x, this.y + this.size / 2)){
             this.xx = -this.xx;
             this.dir = RIGHT;
-            this.frame = [0,0,1,1];
+            if(this.fotogramas)
+                this.frame = this.derecha;
+            else
+                this.frame = [0,0,1,1];
         }
 
         if(!map.hitTest(this.x, this.y + this.size) && !map.hitTest(this.x + this.size, this.y + this.size))
@@ -109,7 +136,7 @@ var Enemy = Class.create(Sprite, {
                 player.damaged = false;
             }
         }
-
+        //Ver la posicion del personaje en tamaños de 32 x 32
         //document.getElementById('pos').innerText = 'X: '+ player.x/32 + ' , Y: ' + player.y/32;
     }
 });
@@ -155,6 +182,7 @@ window.onload = function() {
         player = new Player(30, 0);
 
         var stage = getFirstLevel(game, player);
+
 
         // For moving all map on the enter_frame event
         this.stage = stage;
