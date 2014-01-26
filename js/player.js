@@ -57,7 +57,7 @@ var Player = Class.create(Sprite, {
                 this.yy= -6;
 
         	// Animation.
-                this.frame = 1;
+                //this.frame = 1;
             }else{
                 this.jumpcnt=0;
             }
