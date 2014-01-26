@@ -6,6 +6,8 @@ var Player = Class.create(Sprite, {
         this.x = x;
         this.y = y;
         this.xx= 0;
+        this.life = 100;
+        this.score = 0;
         this.yy = 0;
         this.opacity = 1;
         this.damage=0;
@@ -19,7 +21,9 @@ var Player = Class.create(Sprite, {
 	this.goingToRight = true;
         console.log('Se creo player');
 
+
     },
+
     onenterframe: function() {
         if(game.input.up){
             if(this.jump){
@@ -34,6 +38,8 @@ var Player = Class.create(Sprite, {
             if(game.input.up){
                 //this.yy= -4.6;
                 this.yy= -7;
+        		// Animation.
+                this.frame = 1;
             }else{
                 this.jumpcnt=0;
             }
@@ -44,6 +50,7 @@ var Player = Class.create(Sprite, {
         if (map.hitTest(player.x+8,player.y+32) === false){
             this.jump = false;
             //this.yy += 0.6;
+    	    this.yy += 2;
 	    if(this.yy < 20)
 		this.yy += 2;
 	    console.log(this.yy);
