@@ -44,7 +44,7 @@ var Player = Class.create(Sprite, {
                 obj.play();
 
                 this.jump=false;
-                this.jumpcnt=29; // 11
+                this.jumpcnt=129; // 11
                 //game.assets["pi31.wav"].clone().play();
 
 		this.goingDown = true;
@@ -85,18 +85,21 @@ var Player = Class.create(Sprite, {
             this.jumpcnt=0;this.yy+=3;
         }
 
-
         if (this.x >= game.currentStage.finalPosition) {
             console.log('termino nivel ');
             game.rootScene.removeChild(game.currentStage);
             var stage;
             if (game.currentLevel === 1) {
                 stage = getSecondLevel(game, this);
+                game.currentStage = stage;
+                game.rootScene.addChild(stage);
             } else if (game.currentLevel === 2) {
                 stage = getThirdLevel(game, this);
+                game.currentStage = stage;
+                game.rootScene.addChild(stage);
+            } else if (game.currentLevel === 3) {
+                alert('Ganaste!!! lastima que mañana es lunes y tienes que ir al trabajo');
             }
-            game.currentStage = stage;
-            game.rootScene.addChild(stage);
         }
 
         if (game.input.right) {
@@ -170,7 +173,14 @@ var Player = Class.create(Sprite, {
 	// Game Over when Pepe falls.
         if(this.y >= game.height) {
             console.log("finished");
-            game.endGame("GAME OVER");
+            if (game.currentLevel === 3) {
+                game.rootScene.removeChild(game.currentStage);
+                stage = getThirdLevel(game, this);
+                game.currentStage = stage;
+                game.rootScene.addChild(stage);
+            } else {
+                game.endGame("GAME OVER");
+            }
         }
     }
 });

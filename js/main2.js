@@ -9,6 +9,7 @@ game.preload(
     'assets/map-bright.png',
     'assets/map-noir.png',
     'assets/player.gif',
+    'assets/noir-background.png',
     'cara.png',
     'fish.png',
     'assets/guinea-pig.png',
@@ -54,6 +55,7 @@ function getFirstLevel(game, player) {
 
   game.map = map;
   game.stage = stage;
+  game.currentLevel = 1;
 
   map.image = game.assets['assets/map-bright.png'];
   map.loadData(mapaLevel1);
@@ -65,6 +67,7 @@ function getFirstLevel(game, player) {
 
   stage.addChild(map);
   stage.addChild(player);
+  stage.finalPosition = 3100;
 
     stage.addChild(new Enemy(32 * 30, 39, 16 , 'cara', 3, 1, true));
         stage.addChild(new Enemy(32 * 18, 39, 16 , 'cara', 3, 1, true));
@@ -167,7 +170,7 @@ window.onload = function() {
         self = this;
         obj = game.assets["music/plastic3_happy_game.mp3"].clone();
         obj.volume = 0.3;
-        obj.play();
+        // obj.play();
         // Load the background
         var bg = new Sprite(640, 320);
         bg.image = game.assets['assets/bright-background.png'];
@@ -212,9 +215,7 @@ window.onload = function() {
         var life = Label();
         stage.addChild(map);
         stage.addChild(player);
-        stage.finalPosition = 3100;
         game.currentStage = stage;
-        game.currentLevel = 1;
 
         game.rootScene.addChild(stage);
         game.rootScene.setInterval(3000, function(){
