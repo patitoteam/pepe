@@ -16,6 +16,7 @@ var Player = Class.create(Sprite, {
         this.muki=0;
         this.bulletcnt=0;
         this.missilecnt=0;
+	this.goingToRight = true;
         console.log('Se creo player');
 
     },
@@ -63,11 +64,13 @@ var Player = Class.create(Sprite, {
 	// Moving to the right.
         if (game.input.right) {
 	    this.xx = this.speed;
+	    this.goingToRight = true;
 	}
 
 	// Moving to the left.
         if (game.input.left) {
 	    this.xx = -this.speed;
+	    this.goingToRight = false;
 	}
 
         if(game.input.left === false && game.input.right === false){
@@ -90,18 +93,26 @@ var Player = Class.create(Sprite, {
 	// Interjection with the bottom.
         if (map.hitTest(player.x+8,player.y+32)){
             this.y = Math.floor(this.y / 32) * 32;
+
+	    if(this.goingToRight) {
+		this.frame = 0;
+	    } else {
+		this.frame = 7;
+	    }
         }
 
 	// Animations.
 	if(game.input.right) {
 	    // Walking to the right.
-	    if(this.frame != 0  && this.frame != 2) this.frame = 0;
-	    else if(this.frame == 0) this.frame = 2;
+	    if(this.frame != 0 && this.frame != 1  && this.frame != 2) this.frame = 0;
+	    else if(this.frame == 0) this.frame = 1;
+	    else if(this.frame == 1) this.frame = 2;
 	    else if(this.frame == 2) this.frame = 0;
 	} else if(game.input.left) {
 	    // Walking to the left.
-	    if(this.frame != 5 && this.frame != 7) this.frame = 7;
-	    else if(this.frame == 5) this.frame = 7;
+	    if(this.frame != 5 && this.frame != 6 && this.frame != 7) this.frame = 7;
+	    else if(this.frame == 5) this.frame = 6;
+	    else if(this.frame == 6) this.frame = 7;
 	    else if(this.frame == 7) this.frame = 5;
 	}
     }
