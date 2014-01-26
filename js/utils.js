@@ -536,11 +536,11 @@ var Fruit = Class.create( Sprite, {
         this.game = args.game;
         self = this;
         this.addEventListener('enterframe',function(){
-            if( self.intersect(self.player) ){
-                if(self.player.life<10){
-                    self.player.life = self.player.life+ self.val;
+            if( this.intersect(this.player) ){
+                if(this.player.life<10){
+                    this.player.life = this.player.life + this.val;
                 }
-                self.stage.removeChild(self);
+                this.stage.removeChild(this);
             }
         });
     }

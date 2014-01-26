@@ -36,7 +36,7 @@ var Enemy = Class.create(Sprite, {
         this.x += this.xx;
 
 
-        if(this.evil && this.within(player) && this.x % 3 == 0){
+        if(this.evil && this.within(player) && ( this.x % 5 == 0 || this.x % 7 == 0) ){
             player.opacity = 0.5;
             player.damaged = true;
         } else {
