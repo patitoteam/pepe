@@ -286,17 +286,16 @@
 //     return b;
 // };
 enchant();
-var menuMaker = function(text, x, y){
-    var label = Label()
-    label.text = text;
-    label.x = x;
-    label.y = y;
-    label.color = '#000';
-    label.font = "8px cursive";
-    console.log("label created");
+var menuMaker = function(resource, h, callback){
+    var label = new Sprite(250,50);
+    label.image = game.assets[resource];
+    label.x = Math.floor(game.width / 2) - Math.floor(label.width/2);
+    label.y = h;
+    this.callback = callback;
+    self = this;
+
     label.addEventListener(enchant.Event.TOUCH_END, function (e) {
-        alert("hit"+ text);
-        game.removeScene(game.currentScene)
+        game.removeScene(game.currentScene);
     });
     return label;
 }
@@ -413,6 +412,14 @@ Game.prototype.endGame = function(text){
     var endScene = Scene();
     var label = Label();
     label.text = text;
+    endScene.backgroundColor = 'rgba(0,0,0,0.8)';
+    label.opacity= 1;
+    label.font = "45px Arial";
+    label.color = "white";
+    label.x = Math.floor(game.width / 2) - Math.floor(label.width/2);
+    label.y = Math.floor(game.height / 2) - Math.floor(label.height/2);
+    endScene.width = this.width;
+    endScene.height = this.height;
     endScene.addChild(label);
     this.pushScene(endScene);
 }
