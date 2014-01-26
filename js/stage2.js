@@ -30,5 +30,24 @@ function getSecondLevel(game, player) {
   stage.addChild(map);
   stage.addChild(player);
 
+  
+  stage.addChild(new Enemy(32 * 30, 39, 16 , 'cara', 3, 1, true));
+
+  stage.addChild(new Enemy(32 * 13, 32 * 8, 16 , 'fish', 0, 0, false));
+  stage.addChild(new Enemy(32 * 14, 32 * 8, 16 , 'fish', 0, 0, false));
+  stage.addChild(new Enemy(32 * 15, 32 * 8, 16 , 'fish', 0, 0, false));
+  stage.addChild(new Enemy(32 * 12, 32 * 8, 16 , 'fish', 0, 0, false));
+
+  stage.addChild(new Enemy(32 * 25, 32 * 8, 16 , 'fish', 0, 0, false));
+  stage.addChild(new Enemy(32 * 27, 32 * 8, 16 , 'fish', 0, 0, false));
+
+  stage.addChild(new Enemy(32 * 33, 32 * 8, 16 , 'cara', 3, 1, true));
+  stage.addChild(new Enemy(32 * 34, 32 * 8, 16 , 'cara', 4, 1, true));
+  stage.addChild(new Enemy(32 * 70, 32 * 6, 16 , 'cara', 4, 1, true));
+  stage.addChild(new Enemy(32 * 71, 32 * 6, 16 , 'cara', 4, 1, true));
+  stage.addChild(new Enemy(32 * 76, 32 * 7, 16 , 'cara', 4, 1, true));
+
+
+
   return stage;
 }
