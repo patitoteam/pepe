@@ -75,19 +75,19 @@ var Rat = Class.create(Sprite, {
 
         this.x += this.xx;
 
-	// Choque con el enemigo.
-	if(this.within(player)) {
-	    player.opacity = 0.5;
+        // Choque con el enemigo.
+        if(this.within(player)) {
+            player.opacity = 0.5;
 
-	    // Animación.
-	    console.log(player.xx);
-	    if(player.xx > 0)
-		player.frame = 3;
-	    if(player.xx < 0)
-		player.frame = 4;
-	} else {
-	    player.opacity = 1;
-	}
+            // Animación.
+            console.log(player.xx);
+            if(player.xx > 0)
+            player.frame = 3;
+            if(player.xx < 0)
+            player.frame = 4;
+        } else {
+            player.opacity = 1;
+        }
     }
 });
 
@@ -112,33 +112,33 @@ var GuineaPig = Class.create(Sprite, {
     },
     onenterframe: function() {
 
-    	// Saltar
+    // Saltar
 	if(game.input.up){
-	    if(!this.jump) {
-		this.tl.moveBy(0, (-1)*this.yy*10, 5);
-		this.jump = true;
-	    }
+        if(!this.jump) {
+        this.tl.moveBy(0, (-1)*this.yy*10, 5);
+       this.jump = true;
+        }
         } else {
-	    this.jump = false;
-	}
+        this.jump = false;
+    }
 
-	// Movimiento.
+    // Movimiento.
         if (game.input.right) {
             // Avanzar.
             if(!map.hitTest(this.x + 32, this.y))
-            	this.x += this.xx;
+                this.x += this.xx;
 
-	    // Animación.
-	    this.frame++;
-	    this.frame%=3;
+        // Animación.
+        this.frame++;
+        this.frame%=3;
         } else if (game.input.left) {
-	    // Retroceder.
+        // Retroceder.
             if(!map.hitTest(this.x, this.y+ 16))
-            	this.x -= this.xx ;
+                this.x -= this.xx ;
 
-	    // Animación.
-	    this.frame--;
-	    if(this.frame < 5) this.frame = 7;
+        // Animación.
+        this.frame--;
+        if(this.frame < 5) this.frame = 7;
         }
 
         if(!map.hitTest(this.x+32, this.y + 32) && !gameOver)
@@ -166,11 +166,15 @@ game.preload(
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
     'assets/menu/start.png',
-    'assets/menu/help.png'
+    'assets/menu/help.png',
+    'assets/menu/exit.png',
+    'assets/health-sprite.png'
 );
 
-window.onload = function() {
+game.preload('assets/apple.png','assets/bright-roof.png', 'assets/bright-roof-2.png','assets/bright-background.png','assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png', 'assets/powerups/bright/cherry-sprite.png');
 
+
+window.onload = function() {
     game.onload = function() {
         self = this;
         // Load the background
@@ -180,11 +184,15 @@ window.onload = function() {
         var leafs = new Sprite(640, 96);
         leafs.image = game.assets['assets/bright-roof.png'];
 
-        // game.rootScene.backgroundColor = 'red';
+        var leafs2 = new Sprite(640, 96);
+        leafs2.image = game.assets['assets/bright-roof-2.png'];
+
         game.rootScene.addChild(bg);
+        game.rootScene.addChild(leafs2);
         game.rootScene.addChild(leafs);
 
         map = new Map(32, 32);
+        this.map = map;
         map.image = game.assets['assets/map-bright.png'];
         map.loadData(mapa1);
         // map.collisionData = mapa3;
@@ -196,21 +204,29 @@ window.onload = function() {
 
 
         var stage = new Group();
+
+        // For moving all map on the enter_frame event
+        this.stage = stage;
+
         var menuScene = Scene();
 
 
         game.stage = stage;
         menuScene.addChild(menuMaker("assets/menu/start.png", 100));
         menuScene.addChild(menuMaker("assets/menu/help.png", 155,function(){
-            alert("ayudaa");
+            alert("ayuda");
         }));
-        menuScene.addChild(menuMaker("assets/menu/start.png", 210));
+        menuScene.addChild(menuMaker("assets/menu/exit.png", 210));
         game.pushScene(menuScene);
 
 
         var life = Label();
         stage.addChild(map);
         stage.addChild(player);
+
+        stage.finalPosition = 3100;
+        game.currentStage = stage;
+
         game.rootScene.addChild(stage);
         game.rootScene.setInterval(500, function(){
             //player.life -= 10;
@@ -222,6 +238,13 @@ window.onload = function() {
             stage.addChild(life);
         });
 
+        var healthbar = new HealthBar({
+            x : 50,
+            y : 0,
+            stage  : stage,
+            player  : player
+        });
+
         var strawberry = new Fruit({
             image: game.assets['assets/powerups/bright/cherry-sprite.png'],
             player: player,
@@ -230,23 +253,26 @@ window.onload = function() {
             height: 16,
             x: 50,
             y: 150,
-            val: 50,
+            val: 1,
             stage: stage,
             game: game
         });
 
         stage.addChild(strawberry);
 
-        game.rootScene.addEventListener(Event.ENTER_FRAME, function(e) {
+        game.rootScene.addEventListener(Event.ENTER_FRAME, (function(e) {
             // Realiza el scroll del background
 
             var x = Math.min((game.width - 16) / 2 - player.x, 0);
             var y = Math.min((game.height - 16) / 2 - player.y, 0);
-            x = Math.max(game.width, x + map.width) - map.width;
-            y = Math.max(game.height, y + map.height) - map.height;
-            stage.x = x;
-            stage.y = y;
-        });
+            x = Math.max(game.width, x + this.map.width) - this.map.width;
+            y = Math.max(game.height, y + this.map.height) - this.map.height;
+            this.stage.x = x;
+            this.stage.y = y;
+        }).bind(this));
+
+        // Animation for leafs(background)
+        leafs.tl.fadeOut(70).fadeIn(70).loop();
   };
   game.start();
 };
