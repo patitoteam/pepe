@@ -180,12 +180,12 @@ var GuineaPig = Class.create(Sprite, {
 
 var game = new Game(640, 320);
 game.fps = 17;
-game.preload('assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png');
+game.preload('assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png', 'assets/apple.png');
 
 window.onload = function() {
 
     game.onload = function() {
-
+        self = this;
         map = new Map(32, 32);
         map.image = game.assets['assets/map-bright.png'];
         map.loadData(mapa1);
@@ -195,30 +195,55 @@ window.onload = function() {
         //player = new GuineaPig(30, 0); /******************/
 
         player = new Player(30, 0);
-        var rata = new Rat(10, 0);
+
 
         var stage = new Group();
         var menuScene = Scene();
 
 
-        menuScene.addChild(Menu("Start",50,50));
-        menuScene.addChild(Menu("Help",50,100));
-        menuScene.addChild(Menu("Exit",50,150));
-
-
+        game.stage = stage;
+        menuScene.addChild(menuMaker("Start",50,50));
+        menuScene.addChild(menuMaker("Help",50,100));
+        menuScene.addChild(menuMaker("Exit",50,150));
         game.pushScene(menuScene);
 
 
 
 
+
+        var life = Label();
         stage.addChild(map);
         stage.addChild(player);
-        stage.addChild(rata);
-
         game.rootScene.addChild(stage);
+        game.rootScene.setInterval(3000, function(){
+            player.life -= 10;
+            life.text = player.life;
+            life.color = '#000';
+            life.font = "8px cursive";
+            life.x = 50;
+            life.y = 50;
+            stage.addChild(life);
+        });
+
+        var strawberry = new Fruit({
+            image: self.assets['assets/apple.png'],
+            player: player,
+            map: self.map,
+            width: 32,
+            height: 32,
+            x: 50,
+            y: 150,
+            val: 50,
+            stage: stage
+        });
+
+        console.log(strawberry);
+        stage.addChild(strawberry);
+
 
         game.rootScene.addEventListener(Event.ENTER_FRAME, function(e) {
             // Realiza el scroll del background
+
             var x = Math.min((game.width - 16) / 2 - player.x, 0);
             var y = Math.min((game.height - 16) / 2 - player.y, 0);
             x = Math.max(game.width, x + map.width) - map.width;
