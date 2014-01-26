@@ -131,13 +131,20 @@ var Enemy = Class.create(Sprite, {
 
         if(this.evil && this.within(player) && ( this.x % 5 == 0 || this.x % 7 == 0) ){
             player.opacity = 0.5;
-            if(game.frame % 6 == 0)
+
+            if(game.frame % 6 == 0) {
                 player.life--;
+		obj = game.assets["music/danio_1.wav"];
+		obj.volume = 1;
+		obj.play();
+	    }
+
             // Animación.
             if(player.xx > 0)
             player.frame = 3;
             if(player.xx < 0)
             player.frame = 4;
+
             player.damaged = true;
         } else {
             if(!player.damaged) {
