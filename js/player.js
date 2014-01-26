@@ -39,7 +39,7 @@ var Player = Class.create(Sprite, {
         if(game.input.up){
             if(this.jump){
                 this.jump=false;
-                this.jumpcnt=8; // 11
+                this.jumpcnt=6; // 11
                 //game.assets["pi31.wav"].clone().play();
 
 		this.goingDown = true;
