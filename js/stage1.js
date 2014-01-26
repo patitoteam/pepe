@@ -29,6 +29,31 @@ function getFirstLevel(game, player) {
   stage.addChild(map);
   stage.addChild(player);
 
+    // Cherries.
+    var cherries = [
+	{x: 32, y: 45},
+	{x: 64, y: 45},
+	{x: 96, y: 45},
+	{x: 27*(32), y: 5*(32)},
+	{x: 57*(32), y: 6*(32)},
+	{x: 62.2*(32), y: 5*(32)},
+	{x: 67*(32), y: 4*(32)}
+    ];
+
+    for(var i=0; i< cherries.length; i++) {
+        stage.addChild(new Fruit({
+	    image: game.assets['assets/powerups/bright/cherry-sprite.png'],
+	    player: player,
+	    map: self.map,
+	    width: 16,
+	    height: 16,
+	    x: cherries[i].x,
+	    y: cherries[i].y,
+	    val: 1,
+	    stage: stage,
+	    game: game
+        }));
+    }
     
     stage.addChild(new Enemy(32 * 30, 39 * 1, 32 , 'worm', 3, 1, true));
     stage.addChild(new Enemy(32 * 18, 39 * 1, 32 , 'worm', 3, 1, true));

@@ -77,7 +77,6 @@ var Enemy = Class.create(Sprite, {
 
 
         if(this.evil && this.intersect(player)){
-            console.log('intersect');
             if( this.x % 5 == 0 || this.x % 7 == 0) 
                 player.opacity = 0.5;
             
@@ -148,12 +147,7 @@ window.onload = function() {
 
         player = new Player(30, 0);
 
-        
-
-        console.log('llega aquiasdfasdfsadf');
-
         var stage = getFirstLevel(game, player);
-
 
         // For moving all map on the enter_frame event
         this.stage = stage;
@@ -186,23 +180,6 @@ window.onload = function() {
             life.y = 50;
             // stage.addChild(life);
         });
-
-	// Cherries in the first map.
-	var cherries = [{x: 10, y: 60}, {x: 30, y: 60}, {x: 50, y: 60}, {x: 70, y: 60}];
-	for(var i=0; i< cherries.length; i++) {
-        stage.addChild(new Fruit({
-          image: game.assets['assets/powerups/bright/cherry-sprite.png'],
-          player: player,
-          map: self.map,
-          width: 16,
-          height: 16,
-          x: cherries[i].x,
-          y: cherries[i].y,
-          val: 50,
-          stage: stage,
-          game: game
-        }));
-	}
 
 	// Health Bar
         var healthbar = new HealthBar({
