@@ -146,7 +146,7 @@ window.onload = function() {
 
         player = new Player(30, 0);
 
-        var stage = getFirstLevel(game, player);
+        var stage = getSecondLevel(game, player);
 
 
         // For moving all map on the enter_frame event
