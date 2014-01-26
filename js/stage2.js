@@ -71,6 +71,9 @@ function getThirdLevel(game, player) {
   var stage = new Group();
   map = new Map(32, 32);
 
+  if (game.clearBackground)
+    game.clearBackground();
+
   game.map = map;
   game.stage = stage;
   game.currentLevel = 3;

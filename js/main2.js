@@ -75,13 +75,19 @@ var Enemy = Class.create(Sprite, {
 
         this.x += this.xx;
 
+
         if(this.evil && this.intersect(player)){
             console.log('intersect');
             if( this.x % 5 == 0 || this.x % 7 == 0) 
                 player.opacity = 0.5;
             
-            if(game.frame % 6 == 0)
+            if(game.frame % 6 == 0){
                 player.life--;
+                obj = game.assets["music/danio_1.wav"];
+				obj.volume = 1;
+				obj.play();
+            }
+        
             
             // Animación.
             if(player.xx > 0)
@@ -89,6 +95,7 @@ var Enemy = Class.create(Sprite, {
 
             if(player.xx < 0)
                 player.frame = 4;
+
             player.damaged = true;
         } else {
             if(!player.damaged) {
@@ -123,6 +130,15 @@ window.onload = function() {
 
         var leafs2 = new Sprite(640, 96);
         leafs2.image = game.assets['assets/bright-roof-2.png'];
+
+        game.bg = bg;
+        game.leafs2 = leafs2;
+        game.leafs = leafs;
+        game.clearBackground = function() {
+            this.rootScene.removeChild(this.bg);
+            this.rootScene.removeChild(this.leafs2);
+            this.rootScene.removeChild(this.leafs);
+        };
 
         game.rootScene.addChild(bg);
         game.rootScene.addChild(leafs2);
