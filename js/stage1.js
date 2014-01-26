@@ -74,7 +74,7 @@ function getFirstLevel(game, player) {
 	    height: 16,
 	    x: cherries[i].x,
 	    y: cherries[i].y,
-	    val: 1,
+	    val: 2,
 	    stage: stage,
 	    game: game
         }));

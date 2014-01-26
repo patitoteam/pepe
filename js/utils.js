@@ -573,6 +573,9 @@ var Fruit = Class.create( Sprite, {
 
                 if(this.player.life < 10){
                     this.player.life = this.player.life + this.val;
+		    
+		    if(this.player.life === 11)
+			this.player.life--;
                 }
 
                 this.stage.removeChild(this);
