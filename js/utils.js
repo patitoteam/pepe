@@ -285,18 +285,19 @@
 
 //     return b;
 // };
+
+
 enchant();
-var menuMaker = function(text, x, y){
-    var label = Label()
-    label.text = text;
-    label.x = x;
-    label.y = y;
-    label.color = '#000';
-    label.font = "8px cursive";
-    console.log("label created");
+var menuMaker = function(resource, h, callback){
+    var label = new Sprite(250,50);
+    label.image = game.assets[resource];
+    label.x = Math.floor(game.width / 2) - Math.floor(label.width/2);
+    label.y = h;
+    this.callback = callback;
+    self = this;
+
     label.addEventListener(enchant.Event.TOUCH_END, function (e) {
-        alert("hit"+ text);
-        game.removeScene(game.currentScene)
+        game.removeScene(game.currentScene);
     });
     return label;
 }
@@ -413,10 +414,74 @@ Game.prototype.endGame = function(text){
     var endScene = Scene();
     var label = Label();
     label.text = text;
+    endScene.backgroundColor = 'rgba(0,0,0,0.8)';
+    label.opacity= 1;
+    label.font = "45px Arial";
+    label.color = "white";
+    label.x = Math.floor(game.width / 2) - Math.floor(label.width/2);
+    label.y = Math.floor(game.height / 2) - Math.floor(label.height/2);
+    endScene.width = this.width;
+    endScene.height = this.height;
     endScene.addChild(label);
     this.pushScene(endScene);
 }
 
+var HealthBar = Class.create( Group, {
+    initialize: function(args){
+        Group.call(this, {});
+
+        this.x= args.x;
+        this.y= args.y;
+        this.stage = args.stage;
+        this.player = args.player;
+        this.points = [];
+        for (var i = 0; i <= 4; i++) {
+            this.points[i] = new  Sprite(16,16);
+            this.points[i].image = game.assets['assets/health-sprite.png'];
+            this.points[i].x = 18*i +15;
+            this.points[i].y = 10;
+            this.stage.addChild(this.points[i])
+        };
+        this.resetLifePoints(0);
+        self = this;
+        this.addEventListener('enterframe',function(){
+            switch(self.player.life){
+                case 1:
+                    resetLifePoints(3);points[0].frame = 1;break;
+                case 2:
+                    resetLifePoints(3);points[0].frame = 0;break;
+                case 3:
+                    resetLifePoints(3);
+                    points[0].frame = 0;points[1].frame = 1;break;
+                case 4:
+                    resetLifePoints(3);
+                    points[0].frame = 0;points[1].frame = 0;break;
+                case 5:
+                    resetLifePoints(3);
+                    points[0].frame = 0;points[1].frame = 0;points[2].frame = 1;break;
+                case 6:
+                    resetLifePoints(0);
+                    points[3].frame = 3;points[4].frame = 3;break;
+                case 7:
+                    resetLifePoints(0);
+                    points[4].frame = 3;points[3].frame = 1;break;
+                case 8:
+                    resetLifePoints(0);
+                    points[4].frame = 3;break;
+                case 9:
+                    resetLifePoints(0);
+                    points[4].frame = 1;break;
+                case 10:
+                    resetLifePoints(0);
+            }
+        });
+    },
+    resetLifePoints: function(val){
+        for (var i = 0; i <= 4; i++) {
+            this.points[i].frame = val;
+        }
+    }
+});
 
 
 
@@ -438,10 +503,10 @@ var Fruit = Class.create( Sprite, {
         this.game = args.game;
         self = this;
         this.addEventListener('enterframe',function(){
-
-            if( self.intersect(self.player) ){
-                self.player.life = self.player.life+ self.val;
-                self.stage.removeChild(self);
+            if( this.intersect(this.player) ){
+                this.player.life = this.player.life + this.val;
+                this.stage.removeChild(this);
+		console.log("fruit");
             }
         });
     }
