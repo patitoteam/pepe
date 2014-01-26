@@ -150,13 +150,6 @@ window.onload = function() {
 
         player = new Player(30, 0);
 
-<<<<<<< HEAD
-=======
-
-
-        console.log('llega aquiasdfasdfsadf');
-
->>>>>>> d3b63c411413d6602ae4adeb5ecc123d5e59ce4f
         var stage = getFirstLevel(game, player);
 
         // For moving all map on the enter_frame event
