@@ -39,6 +39,9 @@ var Enemy = Class.create(Sprite, {
         if(this.evil && this.within(player) && ( this.x % 5 == 0 || this.x % 7 == 0) ){
             player.opacity = 0.5;
             player.damaged = true;
+            obj = game.assets["music/danio_2.wav"].clone();
+            obj.volume = 1;
+            obj.play();
         } else {
             if(!player.damaged) {
                 player.opacity = 1;

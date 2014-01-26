@@ -37,7 +37,12 @@ var Player = Class.create(Sprite, {
 
     onenterframe: function() {
         if(game.input.up){
+
             if(this.jump){
+                obj = game.assets["music/salto.wav"].clone();
+                obj.volume = 1;
+                obj.play();
+
                 this.jump=false;
                 this.jumpcnt=9; // 11
                 //game.assets["pi31.wav"].clone().play();

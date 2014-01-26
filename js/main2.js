@@ -17,7 +17,17 @@ game.preload(
     'assets/health-sprite.png',
     'assets/menu/game-over.png',
     'bee.png',
-    'honeycomb.png'
+    'honeycomb.png',
+    'music/plastic3_happy_game.mp3',
+    'music/click_en_menu.wav',
+    'music/danio_1.wav',
+    'music/danio_2.wav',
+    'music/die.wav',
+    'music/eat.wav',
+    'music/mordido_por_zombie.wav',
+    'music/nivel_terminado.wav',
+    'music/salto.wav',
+    'music/why_so_serious.mp3'
 );
 
 game.fps = 15;
@@ -146,6 +156,9 @@ var LEFT = 1;
 window.onload = function() {
     game.onload = function() {
         self = this;
+        obj = game.assets["music/plastic3_happy_game.mp3"].clone();
+        obj.volume = 0.3;
+        obj.play();
         // Load the background
         var bg = new Sprite(640, 320);
         bg.image = game.assets['assets/bright-background.png'];

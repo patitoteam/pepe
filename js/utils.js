@@ -411,6 +411,9 @@ Scene.prototype.setInterval = function(time, callback){
 };
 
 Game.prototype.endGame = function(text){
+    obj = this.assets["music/die.wav"].clone();
+    obj.volume = 1;
+    obj.play();
     var endScene = Scene();
     var sp = new Sprite(255, 125);
     sp.image = this.assets['assets/menu/game-over.png'];
@@ -534,6 +537,8 @@ var Fruit = Class.create( Sprite, {
         self = this;
         this.addEventListener('enterframe',function(){
             if( this.intersect(this.player) ){
+                game.assets["music/eat.wav"].clone().play();
+
                 if(this.player.life<10){
                     this.player.life = this.player.life + this.val;
                 }
