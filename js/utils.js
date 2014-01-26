@@ -442,8 +442,12 @@ var HealthBar = Class.create( Group, {
             this.points[i].y = 10;
             this.stage.addChild(this.points[i])
         };
-        this.resetLifePoints(0);
-        console.log("healthbar created");
+        // this.resetLifePoints(0);
+    },
+    displace: function(val){
+        for (var i = 0; i <= 4; i++) {
+            this.points[i].x = (18*i) + (-1*val) + 15;
+        };
     },
     resetLifePoints: function(val){
         for (var i = 0; i <= 4; i++) {
@@ -451,54 +455,53 @@ var HealthBar = Class.create( Group, {
         }
     },
     setPoints: function(playerLife){
-        console.log("set points");
         switch(playerLife){
             case 1:
-                this.resetLifePoints(3);
+                this.resetLifePoints(2);
                 this.points[0].frame = 1;
                 break;
             case 2:
-                this.resetLifePoints(3);
+                this.resetLifePoints(2);
                 this.points[0].frame = 0;
                 break;
             case 3:
-                this.resetLifePoints(3);
+                this.resetLifePoints(2);
                 this.points[0].frame = 0;
                 this.points[1].frame = 1;
                 break;
             case 4:
-                this.resetLifePoints(3);
+                this.resetLifePoints(2);
                 this.points[0].frame = 0;
                 this.points[1].frame = 0;
                 break;
             case 5:
-                this.resetLifePoints(3);
+                this.resetLifePoints(2);
                 this.points[0].frame = 0;
                 this.points[1].frame = 0;
                 this.points[2].frame = 1;
                 break;
             case 6:
-                this.resetLifePoints(3);
+                this.resetLifePoints(2);
                 this.points[0].frame = 0;
                 this.points[1].frame = 0;
                 this.points[2].frame = 0;
                 break;
             case 7:
-                this.resetLifePoints(0);
+                this.resetLifePoints(2);
                 this.points[0].frame = 0;
                 this.points[1].frame = 0;
                 this.points[2].frame = 0;
                 this.points[3].frame = 1;
                 break;
             case 8:
-                this.resetLifePoints(0);
+                this.resetLifePoints(2);
                 this.points[0].frame = 0;
                 this.points[1].frame = 0;
                 this.points[2].frame = 0;
                 this.points[3].frame = 0;
                 break;
             case 9:
-                this.resetLifePoints(0);
+                this.resetLifePoints(2);
                 this.points[0].frame = 0;
                 this.points[1].frame = 0;
                 this.points[2].frame = 0;
@@ -506,11 +509,7 @@ var HealthBar = Class.create( Group, {
                 this.points[4].frame = 1;
                 break;
             case 10:
-                this.points[0].frame = 0;
-                this.points[1].frame = 0;
-                this.points[2].frame = 0;
-                this.points[3].frame = 0;
-                this.points[4].frame = 0;
+                this.resetLifePoints(0);
                 break;
 
         }

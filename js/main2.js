@@ -234,14 +234,14 @@ window.onload = function() {
         game.currentStage = stage;
 
         game.rootScene.addChild(stage);
-        game.rootScene.setInterval(500, function(){
+        game.rootScene.setInterval(3000, function(){
             //player.life -= 10;
             life.text = player.life;
             life.color = '#000';
             life.font = "8px cursive";
             life.x = 50;
             life.y = 50;
-            stage.addChild(life);
+            // stage.addChild(life);
         });
 
         var healthbar = new HealthBar({
@@ -273,6 +273,7 @@ window.onload = function() {
             this.stage.x = x;
             this.stage.y = y;
             healthbar.setPoints(player.life);
+            healthbar.displace(x);
         }).bind(this));
 
         // Animation for leafs(background)
