@@ -12,6 +12,9 @@ game.preload(
     'assets/noir-background.png',
     'assets/story-scenes/010-redisbad.png',
     'assets/story-scenes/lvl2.png',
+    'assets/messages/donde.png',
+    'assets/messages/mentira.png',
+    'assets/messages/molestos.png',
     'fish.png',
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
@@ -159,7 +162,8 @@ window.onload = function() {
 
         game.stage = stage;
         menuScene.addChild(menuMaker("assets/menu/start.png", 100, function() {
-            game.showMessage('assets/menu/game-over.png');
+            // Primer mensaje
+            game.showMessage('assets/messages/donde.png');
         }));
         // menuScene.addChild(menuMaker("assets/menu/help.png", 155,function(){
         //     alert("ayuda");

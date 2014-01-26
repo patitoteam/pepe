@@ -123,7 +123,7 @@ function getSecondLevel(game, player) {
             stage  : stage,
         });
 
-  game.showMessage('assets/menu/game-over.png');
+  game.showMessage('assets/messages/molestos.png');
 
   return stage;
 }
@@ -171,7 +171,7 @@ function getThirdLevel(game, player) {
     stage  : stage,
   });
 
-  game.showMessage('assets/menu/game-over.png');
+  game.showMessage('assets/messages/mentira.png');
     // Cherries.
     var cherries = [
 //	{x: 32, y: 45},
