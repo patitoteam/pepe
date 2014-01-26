@@ -52,9 +52,10 @@ function getSecondLevel(game, player) {
   stage.addChild(new Enemy(32 * 15, 32 * 8, 16 , 'fish', 0, 0, false));
   stage.addChild(new Enemy(32 * 12, 32 * 8, 16 , 'fish', 0, 0, false));
 
-  stage.addChild(new Enemy(32 * 25, 32 * 8, 16 , 'fish', 0, 0, false));
-  stage.addChild(new Enemy(32 * 27, 32 * 8, 16 , 'fish', 0, 0, false));
-
+ // stage.addChild(new Enemy(32 * 25, 32 * 8, 16 , 'fish', 0, 0, false));
+//  stage.addChild(new Enemy(32 * 27, 32 * 8, 16 , 'fish', 0, 0, false));
+  stage.addChild(new Enemy(32 * 26, 32 * 8, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 28, 32 * 8, 32 , 'worm', 4, 1, true));
   stage.addChild(new Enemy(32 * 33, 32 * 8, 32 , 'worm', 3, 1, true));
   stage.addChild(new Enemy(32 * 34, 32 * 8, 32 , 'worm', 4, 1, true));
   stage.addChild(new Enemy(32 * 70, 32 * 6, 32 , 'worm', 4, 1, true));
@@ -62,7 +63,7 @@ function getSecondLevel(game, player) {
   stage.addChild(new Enemy(32 * 76, 32 * 7, 32 , 'worm', 4, 1, true));
   stage.addChild(new Enemy(32 * 95, 32 * 7, 32 , 'worm', 4, 1, true));
 
-
+  stage.addChild(new Enemy(32 * 49, 32 * 6, 32 , 'honeycomb', 0, 0, false));
 
 
   return stage;
