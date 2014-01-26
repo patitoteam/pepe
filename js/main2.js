@@ -110,7 +110,7 @@ var Enemy = Class.create(Sprite, {
             }
         }
 
-        document.getElementById('pos').innerText = 'X: '+ player.x/32 + ' , Y: ' + player.y/32;
+        //document.getElementById('pos').innerText = 'X: '+ player.x/32 + ' , Y: ' + player.y/32;
     }
 });
 
