@@ -37,11 +37,8 @@ var Player = Class.create(Sprite, {
             if(game.input.up){
                 //this.yy= -4.6;
                 this.yy= -7;
-<<<<<<< HEAD
         		// Animation.
                 this.frame = 1;
-=======
->>>>>>> bc44cf1312d0f8fceb5d0d28a85481ca6fc99edc
             }else{
                 this.jumpcnt=0;
             }
@@ -52,13 +49,10 @@ var Player = Class.create(Sprite, {
         if (map.hitTest(player.x+8,player.y+32) === false){
             this.jump = false;
             //this.yy += 0.6;
-<<<<<<< HEAD
     	    this.yy += 2;
-=======
 	    if(this.yy < 20)
 		this.yy += 2;
 	    console.log(this.yy);
->>>>>>> bc44cf1312d0f8fceb5d0d28a85481ca6fc99edc
         }else{
             this.jump = true;
             this.yy =0;
@@ -75,21 +69,16 @@ var Player = Class.create(Sprite, {
 
 	// Moving to the right.
         if (game.input.right) {
-<<<<<<< HEAD
             this.xx = this.speed;
             // Animation.
             if(this.frame != 0 && this.frame != 2) this.frame = 0;
             else if(this.frame == 0) this.frame = 2;
             else if(this.frame == 2) this.frame = 0;
         }
-=======
-	    this.xx = this.speed;
 	}
->>>>>>> bc44cf1312d0f8fceb5d0d28a85481ca6fc99edc
 
 	// Moving to the left.
         if (game.input.left) {
-<<<<<<< HEAD
             this.xx = -this.speed;
 
             // Animation.
@@ -97,10 +86,7 @@ var Player = Class.create(Sprite, {
             else if(this.frame == 5) this.frame = 7;
             else if(this.frame == 7) this.frame = 5;
         }
-=======
-	    this.xx = -this.speed;
 	}
->>>>>>> bc44cf1312d0f8fceb5d0d28a85481ca6fc99edc
 
         if(game.input.left === false && game.input.right === false){
             if(this.xx>0)this.xx-=this.speed;
@@ -109,10 +95,7 @@ var Player = Class.create(Sprite, {
 
         player.x += this.xx;
 
-<<<<<<< HEAD
-=======
 	// Interjection with the left.
->>>>>>> bc44cf1312d0f8fceb5d0d28a85481ca6fc99edc
         if (map.hitTest(player.x,player.y+8 + 8)){
             this.x = Math.floor(this.x / 16) * 16 + 14;
         }
@@ -127,11 +110,9 @@ var Player = Class.create(Sprite, {
             this.y = Math.floor(this.y / 32) * 32;
         }
 
-<<<<<<< HEAD
     }
 
 
-=======
 	// Animations.
 	if(game.input.right) {
 	    // Walking to the right.
@@ -145,5 +126,4 @@ var Player = Class.create(Sprite, {
 	    else if(this.frame == 7) this.frame = 5;
 	}
     }
->>>>>>> bc44cf1312d0f8fceb5d0d28a85481ca6fc99edc
 });

@@ -155,18 +155,12 @@ var GuineaPig = Class.create(Sprite, {
 
 var game = new Game(640, 320);
 game.fps = 17;
-<<<<<<< HEAD
-game.preload('assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png', 'assets/apple.png');
-=======
 game.preload('assets/bright-roof.png', 'assets/bright-roof-2.png','assets/bright-background.png','assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png');
->>>>>>> bc44cf1312d0f8fceb5d0d28a85481ca6fc99edc
 
 window.onload = function() {
 
     game.onload = function() {
-<<<<<<< HEAD
         self = this;
-=======
         // Load the background
         var bg = new Sprite(640, 320);
         bg.image = game.assets['assets/bright-background.png'];
@@ -178,7 +172,6 @@ window.onload = function() {
         game.rootScene.addChild(bg);
         game.rootScene.addChild(leafs);
 
->>>>>>> bc44cf1312d0f8fceb5d0d28a85481ca6fc99edc
         map = new Map(32, 32);
         map.image = game.assets['assets/map-bright.png'];
         map.loadData(mapa1);
