@@ -171,6 +171,15 @@ window.onload = function() {
         var leafs2 = new Sprite(640, 96);
         leafs2.image = game.assets['assets/bright-roof-2.png'];
 
+        game.bg = bg;
+        game.leafs2 = leafs2;
+        game.leafs = leafs;
+        game.clearBackground = function() {
+            this.rootScene.removeChild(this.bg);
+            this.rootScene.removeChild(this.leafs2);
+            this.rootScene.removeChild(this.leafs);
+        };
+
         game.rootScene.addChild(bg);
         game.rootScene.addChild(leafs2);
         game.rootScene.addChild(leafs);
