@@ -75,7 +75,7 @@ var Player = Class.create(Sprite, {
             else if(this.frame == 0) this.frame = 2;
             else if(this.frame == 2) this.frame = 0;
         }
-	}
+
 
 	// Moving to the left.
         if (game.input.left) {
@@ -85,8 +85,8 @@ var Player = Class.create(Sprite, {
             if(this.frame != 5 && this.frame != 7) this.frame = 7;
             else if(this.frame == 5) this.frame = 7;
             else if(this.frame == 7) this.frame = 5;
-        }
-	}
+
+    	}
 
         if(game.input.left === false && game.input.right === false){
             if(this.xx>0)this.xx-=this.speed;
@@ -110,20 +110,20 @@ var Player = Class.create(Sprite, {
             this.y = Math.floor(this.y / 32) * 32;
         }
 
-    }
 
 
-	// Animations.
-	if(game.input.right) {
-	    // Walking to the right.
-	    if(this.frame != 0  && this.frame != 2) this.frame = 0;
-	    else if(this.frame == 0) this.frame = 2;
-	    else if(this.frame == 2) this.frame = 0;
-	} else if(game.input.left) {
-	    // Walking to the left.
-	    if(this.frame != 5 && this.frame != 7) this.frame = 7;
-	    else if(this.frame == 5) this.frame = 7;
-	    else if(this.frame == 7) this.frame = 5;
-	}
+
+    	// Animations.
+    	if(game.input.right) {
+    	    // Walking to the right.
+    	    if(this.frame != 0  && this.frame != 2) this.frame = 0;
+    	    else if(this.frame == 0) this.frame = 2;
+    	    else if(this.frame == 2) this.frame = 0;
+    	} else if(game.input.left) {
+    	    // Walking to the left.
+    	    if(this.frame != 5 && this.frame != 7) this.frame = 7;
+    	    else if(this.frame == 5) this.frame = 7;
+    	    else if(this.frame == 7) this.frame = 5;
+    	}
     }
 });
