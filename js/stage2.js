@@ -172,6 +172,25 @@ function getThirdLevel(game, player) {
   });
 
   game.showMessage('assets/menu/game-over.png');
+    // Cherries.
+    var cherries = [
+//	{x: 32, y: 45},
+    ];
+
+    for(var i=0; i< cherries.length; i++) {
+        stage.addChild(new Fruit({
+	    image: game.assets['assets/powerups/bright/cherry-sprite.png'],
+	    player: player,
+	    map: self.map,
+	    width: 16,
+	    height: 16,
+	    x: cherries[i].x,
+	    y: cherries[i].y,
+	    val: 1,
+	    stage: stage,
+	    game: game
+        }));
+    }
 
   return stage;
 }
