@@ -9,6 +9,8 @@ game.preload(
     'assets/map-bright.png',
     'assets/map-noir.png',
     'assets/player.gif',
+    'assets/noir-background.png',
+    'assets/story-scenes/010-redisbad.png',
     'fish.png',
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
@@ -79,15 +81,15 @@ var Enemy = Class.create(Sprite, {
         if(this.evil && this.intersect(player)){
             if( this.x % 5 == 0 || this.x % 7 == 0) 
                 player.opacity = 0.5;
-            
+
             if(game.frame % 6 == 0){
                 player.life--;
                 obj = game.assets["music/danio_1.wav"];
 				obj.volume = 1;
 				obj.play();
             }
-        
-            
+
+
             // Animación.
             if(player.xx > 0)
                 player.frame = 3;
@@ -118,6 +120,7 @@ window.onload = function() {
     game.onload = function() {
 	game.startTime = new Date().getTime();
         self = this;
+
         game.firstTheme = game.assets["music/plastic3_happy_game.mp3"].clone();
         game.firstTheme.volume = 0.3;
         game.firstTheme.play();
@@ -147,6 +150,13 @@ window.onload = function() {
 
         player = new Player(30, 0);
 
+<<<<<<< HEAD
+=======
+
+
+        console.log('llega aquiasdfasdfsadf');
+
+>>>>>>> d3b63c411413d6602ae4adeb5ecc123d5e59ce4f
         var stage = getFirstLevel(game, player);
 
         // For moving all map on the enter_frame event
@@ -166,9 +176,7 @@ window.onload = function() {
         var life = Label();
         stage.addChild(map);
         stage.addChild(player);
-        stage.finalPosition = 3100;
         game.currentStage = stage;
-        game.currentLevel = 1;
 
         game.rootScene.addChild(stage);
         game.rootScene.setInterval(3000, function(){
@@ -182,7 +190,7 @@ window.onload = function() {
         });
 
 	// Health Bar
-        var healthbar = new HealthBar({
+        window.healthbar = new HealthBar({
             stage  : stage,
         });
 
@@ -195,8 +203,8 @@ window.onload = function() {
             y = Math.max(game.height, y + this.map.height) - this.map.height;
             this.stage.x = x;
             this.stage.y = y;
-            healthbar.setPoints(player.life);
-            healthbar.displace(x);
+            window.healthbar.setPoints(player.life);
+            window.healthbar.displace(x);
         }).bind(this));
 
         // Animation for leafs(background)

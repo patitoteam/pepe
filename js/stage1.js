@@ -12,6 +12,9 @@ var mapaLevel1 =[
     [8,8,8,8,8,8,3,-1,-1,2,1,8,8,8,8,8,8,8,4,-1,-1,5,8,8,4,-1,-1,-1,-1,5,8,8,8,8,8,8,8,8,8,13,10,11,11,2,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 function getFirstLevel(game, player) {
+
+  console.log('llega aqui');
+
   var stage = new Group();
   map = new Map(32, 32);
 
@@ -28,6 +31,28 @@ function getFirstLevel(game, player) {
 
   stage.addChild(map);
   stage.addChild(player);
+  stage.finalPosition = 3100;
+  game.currentLevel = 1;
+
+
+  stage.addChild(new Enemy(32 * 30, 39 * 1, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 18, 39 * 1, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 17, 39 * 1, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 79, 32 * 7, 32 , 'worm', 3, 1, true));
+
+  stage.addChild(new Enemy(32 * 96, 32 * 6, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 94, 32 * 6, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 43, 32 * 8, 32 , 'worm', 5, 1, true));
+  stage.addChild(new Enemy(32 * 40, 32 * 8, 32 , 'worm', 3, 1, true));
+
+
+  stage.addChild(new Enemy(32 * 57, 32 * 8, 16 , 'bee', 5, 0, true));
+  stage.addChild(new Enemy(32 * 70, 32 * 8, 16 , 'bee', 3, 0, true));
+  stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 7, 0, true));
+  stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, true));
 
     // Cherries.
     var cherries = [
@@ -73,5 +98,6 @@ function getFirstLevel(game, player) {
     stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
     stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 10, 0, true));
     stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, false));
+
   return stage;
 }
