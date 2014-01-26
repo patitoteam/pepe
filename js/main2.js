@@ -54,6 +54,7 @@ function getFirstLevel(game, player) {
 
   game.map = map;
   game.stage = stage;
+  game.startTime = 0;
 
   map.image = game.assets['assets/map-bright.png'];
   map.loadData(mapaLevel1);
@@ -164,10 +165,12 @@ var LEFT = 1;
 
 window.onload = function() {
     game.onload = function() {
+	game.startTime = new Date().getTime();
         self = this;
-        obj = game.assets["music/plastic3_happy_game.mp3"].clone();
-        obj.volume = 0.3;
-        obj.play();
+        game.firstTheme = game.assets["music/plastic3_happy_game.mp3"].clone();
+        game.firstTheme.volume = 0.3;
+        game.firstTheme.play();
+
         // Load the background
         var bg = new Sprite(640, 320);
         bg.image = game.assets['assets/bright-background.png'];
