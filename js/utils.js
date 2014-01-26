@@ -417,13 +417,16 @@ Game.prototype.endGame = function(text){
     var endScene = Scene();
     var sp = new Sprite(255, 125);
     sp.image = this.assets['assets/menu/game-over.png'];
-    endScene.backgroundColor = 'rgba(255,255,255,0.7)';
+    // endScene.backgroundColor = 'rgba(255,255,255,0.7)';
+    sp.opacity = 0.1;
     sp.frame = 0;
     sp.x = Math.floor(game.width / 2) - Math.floor(sp.width/2);
     sp.y = Math.floor(game.height / 2) - Math.floor(sp.height/2);
     endScene.width = this.width;
     endScene.height = this.height;
     endScene.addChild(sp);
+
+    sp.tl.fadeTo(1, 25);
     this.pushScene(endScene);
 };
 
@@ -446,15 +449,15 @@ Game.prototype.showMessage = function(asset) {
     var sp = new Sprite(255, 125);
     sp.image = this.assets[asset];
     // endScene.backgroundColor = 'rgba(255,255,255,0.3)';
-    sp.opacity = 0.5;
+    sp.opacity = 0.1;
     sp.frame = 0;
     sp.x = Math.floor(game.width / 2) - Math.floor(sp.width/2);
     sp.y = Math.floor(game.height / 2) - Math.floor(sp.height/2);
     endScene.width = this.width;
     endScene.height = this.height;
     endScene.addChild(sp);
-
     this.pushScene(endScene);
+    sp.tl.fadeTo(1, 25).then((function() { this.removeScene(endScene); }).bind(this));
 };
 
 var HealthBar = Class.create( Group, {

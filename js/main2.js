@@ -164,11 +164,11 @@ window.onload = function() {
 
         game.stage = stage;
         menuScene.addChild(menuMaker("assets/menu/start.png", 100));
-        menuScene.addChild(menuMaker("assets/menu/help.png", 155,function(){
-            alert("ayuda");
-        }));
+        // menuScene.addChild(menuMaker("assets/menu/help.png", 155,function(){
+        //     alert("ayuda");
+        // }));
 
-        menuScene.addChild(menuMaker("assets/menu/exit.png", 210));
+        // menuScene.addChild(menuMaker("assets/menu/exit.png", 210));
         game.pushScene(menuScene);
 
 

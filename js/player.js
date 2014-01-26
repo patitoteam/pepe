@@ -91,7 +91,7 @@ var Player = Class.create(Sprite, {
             var stage;
             if (game.currentLevel === 1) {
                 stage = getSecondLevel(game, this);
-                // game.showMessage('assets/menu/game-over.png');
+                game.showMessage('assets/menu/game-over.png');
                 game.currentStage = stage;
                 game.rootScene.addChild(stage);
             } else if (game.currentLevel === 2) {
@@ -175,7 +175,14 @@ var Player = Class.create(Sprite, {
 	// Meh..
         if(this.life<=0) {
             console.log("finished");
-            game.endGame("GAME OVER");
+            if (game.currentLevel === 3) {
+                game.rootScene.removeChild(game.currentStage);
+                stage = getThirdLevel(game, this);
+                game.currentStage = stage;
+                game.rootScene.addChild(stage);
+            } else {
+                game.endGame("GAME OVER");
+            }
         }
 
 	// Game Over when Pepe falls.
