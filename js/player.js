@@ -19,9 +19,8 @@ var Player = Class.create(Sprite, {
         this.bulletcnt=0;
         this.missilecnt=0;
 	this.goingToRight = true;
+	this.goingDown = false;
         console.log('Se creo player');
-
-
     },
 
     onenterframe: function() {
@@ -30,15 +29,17 @@ var Player = Class.create(Sprite, {
                 this.jump=false;
                 this.jumpcnt=6; // 11
                 //game.assets["pi31.wav"].clone().play();
+
+		this.goingDown = true;
             }
         }
 
         if(this.jumpcnt){
             this.jumpcnt--;
             if(game.input.up){
-                //this.yy= -4.6;
                 this.yy= -7;
-        		// Animation.
+		
+        	// Animation.
                 this.frame = 1;
             }else{
                 this.jumpcnt=0;
@@ -68,16 +69,21 @@ var Player = Class.create(Sprite, {
             this.jumpcnt=0;this.yy+=3;
         }
 
-	// Moving to the right.
+
         if (game.input.right) {
+	    // Moving to the right.
 	    this.xx = this.speed;
 	    this.goingToRight = true;
-	}
-
-	// Moving to the left.
-        if (game.input.left) {
+	} else if (game.input.left) {
+	    // Moving to the left.
 	    this.xx = -this.speed;
 	    this.goingToRight = false;
+	} else {
+	    if(this.goingToRight) {
+		this.frame = 0;
+	    } else {
+		this.frame = 7;
+	    }
 	}
 
         if(game.input.left === false && game.input.right === false){
@@ -101,10 +107,13 @@ var Player = Class.create(Sprite, {
         if (map.hitTest(player.x+8,player.y+32)){
             this.y = Math.floor(this.y / 32) * 32;
 
-	    if(this.goingToRight) {
-		this.frame = 0;
-	    } else {
-		this.frame = 7;
+	    if(this.goinDown) {
+		if(this.goingToRight) {
+		    this.frame = 0;
+		} else {
+		    this.frame = 7;
+		}
+		this.goingDown = false;
 	    }
         }
 
