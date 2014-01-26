@@ -503,11 +503,10 @@ var Fruit = Class.create( Sprite, {
         this.game = args.game;
         self = this;
         this.addEventListener('enterframe',function(){
-            if( self.intersect(self.player) ){
-                if(self.player.life<10){
-                    self.player.life = self.player.life+ self.val;
-                }
-                self.stage.removeChild(self);
+            if( this.intersect(this.player) ){
+                this.player.life = this.player.life + this.val;
+                this.stage.removeChild(this);
+		console.log("fruit");
             }
         });
     }

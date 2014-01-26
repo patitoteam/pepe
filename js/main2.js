@@ -187,27 +187,30 @@ window.onload = function() {
             stage.addChild(life);
         });
 
+	// Cherries in the first map.
+	var V = [40, 500, 600, 1000];
+	for(var i=0; i<=V.length; i++) {
+            stage.addChild(new Fruit({
+		image: game.assets['assets/powerups/bright/cherry-sprite.png'],
+		player: player,
+		map: self.map,
+		width: 16,
+		height: 16,
+		x: V[i],
+		y: 150,
+		val: 50,
+		stage: stage,
+		game: game
+            }));
+	}
+	
+	// Health Bar
         var healthbar = new HealthBar({
             x : 50,
             y : 0,
             stage  : stage,
             player  : player
         });
-
-        var strawberry = new Fruit({
-            image: game.assets['assets/powerups/bright/cherry-sprite.png'],
-            player: player,
-            map: self.map,
-            width: 16,
-            height: 16,
-            x: 50,
-            y: 150,
-            val: 1,
-            stage: stage,
-            game: game
-        });
-
-        stage.addChild(strawberry);
 
         game.rootScene.addEventListener(Event.ENTER_FRAME, (function(e) {
             // Realiza el scroll del background
