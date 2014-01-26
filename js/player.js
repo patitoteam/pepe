@@ -122,12 +122,15 @@ var Player = Class.create(Sprite, {
     	    else if(this.frame == 6) this.frame = 7;
     	    else if(this.frame == 7) this.frame = 5;
     	}
+
+	// Meh..
         if(this.life<=0) {
             console.log("finished");
             game.endGame("GAME OVER");
         }
 
-        if(this.x>= game.height) {
+	// Game Over when Pepe falls.
+        if(this.y >= game.height) {
             console.log("finished");
             game.endGame("GAME OVER");
         }

@@ -155,7 +155,7 @@ var GuineaPig = Class.create(Sprite, {
 
 var game = new Game(640, 320);
 game.fps = 17;
-game.preload('assets/apple.png','assets/bright-roof.png', 'assets/bright-roof-2.png','assets/bright-background.png','assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png');
+game.preload('assets/apple.png','assets/bright-roof.png', 'assets/bright-roof-2.png','assets/bright-background.png','assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png', 'assets/powerups/bright/cherry-sprite.png');
 
 window.onload = function() {
 
@@ -199,7 +199,7 @@ window.onload = function() {
         stage.addChild(player);
         game.rootScene.addChild(stage);
         game.rootScene.setInterval(500, function(){
-            player.life -= 10;
+            //player.life -= 10;
             life.text = player.life;
             life.color = '#000';
             life.font = "8px cursive";
@@ -209,11 +209,11 @@ window.onload = function() {
         });
 
         var strawberry = new Fruit({
-            image: self.assets['assets/apple.png'],
+            image: self.assets['assets/powerups/bright/cherry-sprite.png'],
             player: player,
             map: self.map,
-            width: 32,
-            height: 32,
+            width: 16,
+            height: 16,
             x: 50,
             y: 150,
             val: 50,
@@ -221,9 +221,7 @@ window.onload = function() {
             game: game
         });
 
-        console.log(strawberry);
         stage.addChild(strawberry);
-
 
         game.rootScene.addEventListener(Event.ENTER_FRAME, function(e) {
             // Realiza el scroll del background
