@@ -568,16 +568,22 @@ var Fruit = Class.create( Sprite, {
         this.stage = args.stage;
         this.game = args.game;
         self = this;
-        this.addEventListener('enterframe',function(){
+
+	
+        this.addEventListener('enterframe',(function(){
             if( this.intersect(this.player) ){
                 game.assets["music/eat.wav"].clone().play();
 
-                if(this.player.life<10){
+                if(this.player.life < 10){
                     this.player.life = this.player.life + this.val;
+		    
+		    if(this.player.life === 11)
+			this.player.life--;
                 }
+
                 this.stage.removeChild(this);
             }
-        });
+        }).bind(this));
     }
 });
 
