@@ -33,11 +33,28 @@ function getSecondLevel(game, player) {
   game.stage = stage;
   game.currentLevel = 2;
 
+  if (game.clearBackground) { game.clearBackground(); }
+
+  var bg = new Sprite(3280, 480);
+  bg.image = game.assets['assets/story-scenes/lvl2.png'];
+  var leafs = new Sprite(640, 96);
+  leafs.image = game.assets['assets/bright-roof.png'];
+  var leafs2 = new Sprite(640, 96);
+  leafs2.image = game.assets['assets/bright-roof-2.png'];
+
+  game.rootScene.addChild(bg);
+
+  game.bg = bg;
+  game.leafs = leafs;
+  game.leafs2 = leafs2;
+
+
   map.image = game.assets['assets/map-bright.png'];
   map.loadData(mapaLevel2);
 
   player.x = 64;
   player.y = 0;
+  player.jumpcnt = 9;
 
   player.resetPlayer();
 
@@ -106,6 +123,8 @@ function getSecondLevel(game, player) {
             stage  : stage,
         });
 
+  game.showMessage('assets/menu/game-over.png');
+
   return stage;
 }
 function getThirdLevel(game, player) {
@@ -138,6 +157,7 @@ function getThirdLevel(game, player) {
 
   player.x = 64;
   player.y = 0;
+  player.jumpcnt = 9;
 
   player.resetPlayer();
 
@@ -150,6 +170,8 @@ function getThirdLevel(game, player) {
   window.healthbar = new HealthBar({
     stage  : stage,
   });
+
+  game.showMessage('assets/menu/game-over.png');
 
   return stage;
 }

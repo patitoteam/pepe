@@ -91,7 +91,6 @@ var Player = Class.create(Sprite, {
             var stage;
             if (game.currentLevel === 1) {
                 stage = getSecondLevel(game, this);
-                game.showMessage('assets/menu/game-over.png');
                 game.currentStage = stage;
                 game.rootScene.addChild(stage);
             } else if (game.currentLevel === 2) {
@@ -99,7 +98,7 @@ var Player = Class.create(Sprite, {
                 game.currentStage = stage;
                 game.rootScene.addChild(stage);
             } else if (game.currentLevel === 3) {
-                alert('Ganaste!!! lastima que mañana es lunes y tienes que ir al trabajo');
+                game.showMessage('assets/menu/game-over.png');
             }
         }
 

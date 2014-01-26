@@ -296,8 +296,9 @@ var menuMaker = function(resource, h, callback){
     this.callback = callback;
     self = this;
 
-    label.addEventListener(enchant.Event.TOUCH_END, function (e) {
+    label.addEventListener(enchant.Event.TOUCH_START, function (e) {
         game.removeScene(game.currentScene);
+        callback.call(null);
     });
     return label;
 }
@@ -569,14 +570,14 @@ var Fruit = Class.create( Sprite, {
         this.game = args.game;
         self = this;
 
-	
+
         this.addEventListener('enterframe',(function(){
             if( this.intersect(this.player) ){
                 game.assets["music/eat.wav"].clone().play();
 
                 if(this.player.life < 10){
                     this.player.life = this.player.life + this.val;
-		    
+
 		    if(this.player.life === 11)
 			this.player.life--;
                 }

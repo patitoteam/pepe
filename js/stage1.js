@@ -28,6 +28,7 @@ function getFirstLevel(game, player) {
   player.y = 0;
 
   player.resetPlayer();
+  player.jumpcnt = 10;
 
   stage.addChild(map);
   stage.addChild(player);
@@ -79,7 +80,7 @@ function getFirstLevel(game, player) {
 	    game: game
         }));
     }
-    
+
     stage.addChild(new Enemy(32 * 30, 39 * 1, 32 , 'worm', 3, 1, true));
     stage.addChild(new Enemy(32 * 18, 39 * 1, 32 , 'worm', 3, 1, true));
     stage.addChild(new Enemy(32 * 17, 39 * 1, 32 , 'worm', 3, 1, true));
