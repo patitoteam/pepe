@@ -11,7 +11,7 @@ var Player = Class.create(Sprite, {
         this.yy = 0;
         this.opacity = 1;
         this.damage=0;
-        this.speed = 7;
+        this.speed = 8;
         this.jump = false;
         this.jumpcnt=0;
         this.frame = 0;
@@ -49,7 +49,7 @@ var Player = Class.create(Sprite, {
         if(this.jumpcnt){
             this.jumpcnt--;
             if(game.input.up){
-                this.yy= -7;
+                this.yy= -6;
 
         	// Animation.
                 this.frame = 1;

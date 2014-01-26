@@ -154,7 +154,7 @@ var GuineaPig = Class.create(Sprite, {
 // -----------------------------------------------------------------------------
 
 var game = new Game(640, 320);
-game.fps = 16;
+game.fps = 15;
 game.preload('assets/apple.png','assets/bright-roof.png', 'assets/bright-roof-2.png','assets/bright-background.png','assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png', 'assets/powerups/bright/cherry-sprite.png');
 
 window.onload = function() {
