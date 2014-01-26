@@ -194,14 +194,11 @@ window.onload = function() {
         game.pushScene(menuScene);
 
 
-
-
-
         var life = Label();
         stage.addChild(map);
         stage.addChild(player);
         game.rootScene.addChild(stage);
-        game.rootScene.setInterval(3000, function(){
+        game.rootScene.setInterval(500, function(){
             player.life -= 10;
             life.text = player.life;
             life.color = '#000';
@@ -220,7 +217,8 @@ window.onload = function() {
             x: 50,
             y: 150,
             val: 50,
-            stage: stage
+            stage: stage,
+            game: game
         });
 
         console.log(strawberry);

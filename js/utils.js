@@ -409,6 +409,13 @@ Scene.prototype.setInterval = function(time, callback){
     return interval;
 };
 
+Game.prototype.endGame = function(text){
+    var endScene = Scene();
+    var label = Label();
+    label.text = text;
+    endScene.addChild(label);
+    this.pushScene(endScene);
+}
 
 
 
@@ -428,12 +435,11 @@ var Fruit = Class.create( Sprite, {
         this.player = args.player;
         this.map = args.map;
         this.stage = args.stage;
+        this.game = args.game;
         self = this;
         this.addEventListener('enterframe',function(){
 
             if( self.intersect(self.player) ){
-                console.log(self.player.life);
-                console.log(self.val);
                 self.player.life = self.player.life+ self.val;
                 self.stage.removeChild(self);
             }
