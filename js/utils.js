@@ -412,17 +412,15 @@ Scene.prototype.setInterval = function(time, callback){
 
 Game.prototype.endGame = function(text){
     var endScene = Scene();
-    var label = Label();
-    label.text = text;
-    endScene.backgroundColor = 'rgba(0,0,0,0.8)';
-    label.opacity= 1;
-    label.font = "45px Arial";
-    label.color = "white";
-    label.x = Math.floor(game.width / 2) - Math.floor(label.width/2);
-    label.y = Math.floor(game.height / 2) - Math.floor(label.height/2);
+    var sp = new Sprite(255, 125);
+    sp.image = this.assets['assets/menu/game-over.png'];
+    endScene.backgroundColor = 'rgba(255,255,255,0.7)';
+    sp.frame = 0;
+    sp.x = Math.floor(game.width / 2) - Math.floor(sp.width/2);
+    sp.y = Math.floor(game.height / 2) - Math.floor(sp.height/2);
     endScene.width = this.width;
     endScene.height = this.height;
-    endScene.addChild(label);
+    endScene.addChild(sp);
     this.pushScene(endScene);
 }
 
@@ -511,7 +509,6 @@ var HealthBar = Class.create( Group, {
             case 10:
                 this.resetLifePoints(0);
                 break;
-
         }
     }
 });

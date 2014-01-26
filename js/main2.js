@@ -15,6 +15,7 @@ game.preload(
     'assets/menu/help.png',
     'assets/menu/exit.png',
     'assets/health-sprite.png',
+    'assets/menu/game-over.png',
     'bee.png',
     'honeycomb.png'
 );
