@@ -98,7 +98,7 @@ var Player = Class.create(Sprite, {
                 game.currentStage = stage;
                 game.rootScene.addChild(stage);
             } else if (game.currentLevel === 3) {
-                game.showMessage('assets/menu/game-over.png');
+                game.showMessage('assets/menu/ganaste.png');
             }
         }
 

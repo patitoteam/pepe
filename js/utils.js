@@ -289,7 +289,7 @@
 
 enchant();
 var menuMaker = function(resource, h, callback){
-    var label = new Sprite(310,150);
+    var label = new Sprite(286,103);
     label.image = game.assets[resource];
     label.x = Math.floor(game.width / 2) - Math.floor(label.width/2);
     label.y = h;
@@ -433,7 +433,7 @@ Game.prototype.endGame = function(text){
 
 Game.prototype.winGame = function(asset) {
     var endScene = Scene();
-    var sp = new Sprite(255, 125);
+    var sp = new Sprite(640, 320);
     sp.image = this.assets[asset];
     endScene.backgroundColor = 'rgba(255,255,255,0.7)';
     sp.frame = 0;

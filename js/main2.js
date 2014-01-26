@@ -23,6 +23,7 @@ game.preload(
     'assets/menu/exit.png',
     'assets/health-sprite.png',
     'assets/menu/game-over.png',
+    'assets/menu/ganaste.png',
     'bee.png',
     'honeycomb.png',
     'music/plastic3_happy_game.mp3',
@@ -78,7 +79,7 @@ var Enemy = Class.create(Sprite, {
         this.repetir = function(){};
     },
     onenterframe: function(){
-        
+
         this.repetir();
         /*Volver al inicio cuando muere*/
         if(this.y >= game.height){
