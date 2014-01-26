@@ -63,7 +63,13 @@ function getSecondLevel(game, player) {
   stage.addChild(new Enemy(32 * 76, 32 * 7, 32 , 'worm', 4, 1, true));
   stage.addChild(new Enemy(32 * 95, 32 * 7, 32 , 'worm', 4, 1, true));
 
-  stage.addChild(new Enemy(32 * 49, 32 * 6, 32 , 'honeycomb', 0, 0, false));
+  stage.addChild(new Enemy(32 * 49, 32 * 6, 32 , 'honeycomb', 0, 0, true));
+  stage.addChild(new Enemy(32 * 47, 32 * 6, 16 , 'bee', 5, 0, true));
+  stage.addChild(new Enemy(32 * 50, 32 * 6, 16 , 'bee', 5, 0, true));
+  stage.addChild(new Enemy(32 * 58, 32 * 6, 32 , 'worm', 1, 1, true));
+
+  stage.addChild(new Enemy(32 * 96, 32 * 7, 32 , 'worm', 1, 1, true));
+  stage.addChild(new Enemy(32 * 98, 32 * 7, 32 , 'worm', 1, 1, true));
 
 
   return stage;
