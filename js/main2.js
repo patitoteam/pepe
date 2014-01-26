@@ -196,20 +196,20 @@ window.onload = function() {
         });
 
 	// Cherries in the first map.
-	var V = [40, 500, 600, 1000];
-	for(var i=0; i<=V.length; i++) {
-            stage.addChild(new Fruit({
-		image: game.assets['assets/powerups/bright/cherry-sprite.png'],
-		player: player,
-		map: self.map,
-		width: 16,
-		height: 16,
-		x: V[i],
-		y: 150,
-		val: 1,
-		stage: stage,
-		game: game
-            }));
+	var cherries = [{x: 10, y: 60}, {x: 30, y: 60}, {x: 50, y: 60}, {x: 70, y: 60}];
+	for(var i=0; i< cherries.length; i++) {
+        stage.addChild(new Fruit({
+          image: game.assets['assets/powerups/bright/cherry-sprite.png'],
+          player: player,
+          map: self.map,
+          width: 16,
+          height: 16,
+          x: cherries[i].x,
+          y: cherries[i].y,
+          val: 50,
+          stage: stage,
+          game: game
+        }));
 	}
 
 	// Health Bar
