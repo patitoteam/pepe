@@ -81,7 +81,6 @@ var Rat = Class.create(Sprite, {
             if(game.frame % 6 == 0)
                 player.life--;
             // Animación.
-            console.log(player.xx);
             if(player.xx > 0)
             player.frame = 3;
             if(player.xx < 0)
@@ -246,10 +245,7 @@ window.onload = function() {
         });
 
         var healthbar = new HealthBar({
-            x : 50,
-            y : 0,
             stage  : stage,
-            player  : player
         });
 
         var strawberry = new Fruit({
@@ -276,6 +272,7 @@ window.onload = function() {
             y = Math.max(game.height, y + this.map.height) - this.map.height;
             this.stage.x = x;
             this.stage.y = y;
+            healthbar.setPoints(player.life);
         }).bind(this));
 
         // Animation for leafs(background)

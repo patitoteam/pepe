@@ -18,7 +18,7 @@ var Enemy = Class.create(Sprite, {
         this.frame = [40,40,41,41];
         this.dir = 0; // direction 0: right 1: left
         //stage.addChild(this);
-        
+
     },
     onenterframe: function(){
         if(this.dir == RIGHT && map.hitTest(this.x + this.size, this.y)){
@@ -32,7 +32,7 @@ var Enemy = Class.create(Sprite, {
         }
         if(!map.hitTest(this.x, this.y + this.size) && !map.hitTest(this.x + this.size, this.y + this.size))
             this.y += this.yy;
-        
+
         this.x += this.xx;
 
 

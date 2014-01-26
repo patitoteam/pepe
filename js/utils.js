@@ -443,42 +443,76 @@ var HealthBar = Class.create( Group, {
             this.stage.addChild(this.points[i])
         };
         this.resetLifePoints(0);
-        self = this;
-        this.addEventListener('enterframe',function(){
-            switch(self.player.life){
-                case 1:
-                    resetLifePoints(3);points[0].frame = 1;break;
-                case 2:
-                    resetLifePoints(3);points[0].frame = 0;break;
-                case 3:
-                    resetLifePoints(3);
-                    points[0].frame = 0;points[1].frame = 1;break;
-                case 4:
-                    resetLifePoints(3);
-                    points[0].frame = 0;points[1].frame = 0;break;
-                case 5:
-                    resetLifePoints(3);
-                    points[0].frame = 0;points[1].frame = 0;points[2].frame = 1;break;
-                case 6:
-                    resetLifePoints(0);
-                    points[3].frame = 3;points[4].frame = 3;break;
-                case 7:
-                    resetLifePoints(0);
-                    points[4].frame = 3;points[3].frame = 1;break;
-                case 8:
-                    resetLifePoints(0);
-                    points[4].frame = 3;break;
-                case 9:
-                    resetLifePoints(0);
-                    points[4].frame = 1;break;
-                case 10:
-                    resetLifePoints(0);
-            }
-        });
+        console.log("healthbar created");
     },
     resetLifePoints: function(val){
         for (var i = 0; i <= 4; i++) {
             this.points[i].frame = val;
+        }
+    },
+    setPoints: function(playerLife){
+        console.log("set points");
+        switch(playerLife){
+            case 1:
+                this.resetLifePoints(3);
+                this.points[0].frame = 1;
+                break;
+            case 2:
+                this.resetLifePoints(3);
+                this.points[0].frame = 0;
+                break;
+            case 3:
+                this.resetLifePoints(3);
+                this.points[0].frame = 0;
+                this.points[1].frame = 1;
+                break;
+            case 4:
+                this.resetLifePoints(3);
+                this.points[0].frame = 0;
+                this.points[1].frame = 0;
+                break;
+            case 5:
+                this.resetLifePoints(3);
+                this.points[0].frame = 0;
+                this.points[1].frame = 0;
+                this.points[2].frame = 1;
+                break;
+            case 6:
+                this.resetLifePoints(3);
+                this.points[0].frame = 0;
+                this.points[1].frame = 0;
+                this.points[2].frame = 0;
+                break;
+            case 7:
+                this.resetLifePoints(0);
+                this.points[0].frame = 0;
+                this.points[1].frame = 0;
+                this.points[2].frame = 0;
+                this.points[3].frame = 1;
+                break;
+            case 8:
+                this.resetLifePoints(0);
+                this.points[0].frame = 0;
+                this.points[1].frame = 0;
+                this.points[2].frame = 0;
+                this.points[3].frame = 0;
+                break;
+            case 9:
+                this.resetLifePoints(0);
+                this.points[0].frame = 0;
+                this.points[1].frame = 0;
+                this.points[2].frame = 0;
+                this.points[3].frame = 0;
+                this.points[4].frame = 1;
+                break;
+            case 10:
+                this.points[0].frame = 0;
+                this.points[1].frame = 0;
+                this.points[2].frame = 0;
+                this.points[3].frame = 0;
+                this.points[4].frame = 0;
+                break;
+
         }
     }
 });
