@@ -152,7 +152,7 @@ window.onload = function() {
 
         console.log('llega aquiasdfasdfsadf');
 
-        var stage = getFirstLevel(game, player);
+        var stage = getThirdLevel(game, player);
 
 
         // For moving all map on the enter_frame event

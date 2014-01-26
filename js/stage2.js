@@ -70,7 +70,8 @@ function getSecondLevel(game, player) {
 
   stage.addChild(new Enemy(32 * 96, 32 * 7, 32 , 'worm', 1, 1, true));
   stage.addChild(new Enemy(32 * 98, 32 * 7, 32 , 'worm', 1, 1, true));
-
+  stage.addChild(new Enemy(32 * 96, 32 * 7, 32 , 'worm', 1, 1, true));
+  stage.addChild(new Enemy(32 * 98, 32 * 7, 32 , 'worm', 1, 1, true));
 
   return stage;
 }
@@ -96,6 +97,27 @@ function getThirdLevel(game, player) {
   stage.finalPosition = 13100;
   stage.addChild(map);
   stage.addChild(player);
+
+
+   stage.addChild(new Enemy(32 * 30, 39 * 1, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 18, 39 * 1, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 17, 39 * 1, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 79, 32 * 7, 32 , 'worm', 3, 1, true));
+
+  stage.addChild(new Enemy(32 * 96, 32 * 6, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 94, 32 * 6, 32 , 'worm', 3, 1, true));
+  stage.addChild(new Enemy(32 * 43, 32 * 8, 32 , 'worm', 5, 1, true));
+  stage.addChild(new Enemy(32 * 40, 32 * 8, 32 , 'worm', 3, 1, true));
+
+
+  stage.addChild(new Enemy(32 * 57, 32 * 8, 16 , 'bee', 5, 0, true));
+  stage.addChild(new Enemy(32 * 70, 32 * 8, 16 , 'bee', 3, 0, true));
+  stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 7, 0, true));
+  stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, true));
+
 
   return stage;
 }
