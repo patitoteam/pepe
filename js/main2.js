@@ -9,7 +9,6 @@ game.preload(
     'assets/map-bright.png',
     'assets/map-noir.png',
     'assets/player.gif',
-    'cara.png',
     'fish.png',
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
@@ -29,7 +28,8 @@ game.preload(
     'music/mordido_por_zombie.wav',
     'music/nivel_terminado.wav',
     'music/salto.wav',
-    'music/why_so_serious.mp3'
+    'music/why_so_serious.mp3',
+    'worm.png'
 );
 
 game.fps = 15;
@@ -109,42 +109,47 @@ var Enemy = Class.create(Sprite, {
         this.y = y;
         this.xx = velocityX;//Velocidad en x
         this.yy = velocityY;
-        this.frame = [40,40,41,41];
+        this.frame = [0,0,1,1];
         this.dir = 0; // direction 0: right 1: left
-        //stage.addChild(this);
-
     },
     onenterframe: function(){
-        if(this.dir == RIGHT && map.hitTest(this.x + this.size, this.y)){
+
+        if(this.dir == RIGHT && map.hitTest(this.x + this.size, this.y + this.size / 2)){
             this.xx = -this.xx;
             this.dir = LEFT;
-            this.frame= [42,42,43,43];
-        }else if(this.dir == LEFT && map.hitTest(this.x, this.y)){
+            this.frame= [2,2,3,3];
+
+        }else if(this.dir == LEFT && map.hitTest(this.x, this.y + this.size / 2)){
             this.xx = -this.xx;
             this.dir = RIGHT;
-            this.frame = [40,40,41,41];
+            this.frame = [0,0,1,1];
         }
+
         if(!map.hitTest(this.x, this.y + this.size) && !map.hitTest(this.x + this.size, this.y + this.size))
             this.y += this.yy;
 
         this.x += this.xx;
 
 
-        if(this.evil && this.within(player) && ( this.x % 5 == 0 || this.x % 7 == 0) ){
-            player.opacity = 0.5;
-
-            if(game.frame % 6 == 0) {
+        if(this.evil && this.intersect(player)){
+            console.log('intersect');
+            if( this.x % 5 == 0 || this.x % 7 == 0) 
+                player.opacity = 0.5;
+            
+            if(game.frame % 6 == 0){
                 player.life--;
-		obj = game.assets["music/danio_1.wav"];
-		obj.volume = 1;
-		obj.play();
-	    }
-
+                obj = game.assets["music/danio_1.wav"];
+				obj.volume = 1;
+				obj.play();
+            }
+        
+            
             // Animación.
             if(player.xx > 0)
-            player.frame = 3;
+                player.frame = 3;
+
             if(player.xx < 0)
-            player.frame = 4;
+                player.frame = 4;
 
             player.damaged = true;
         } else {
@@ -154,6 +159,8 @@ var Enemy = Class.create(Sprite, {
                 player.damaged = false;
             }
         }
+
+        document.getElementById('pos').innerText = 'X: '+ player.x/32 + ' , Y: ' + player.y/32;
     }
 });
 
