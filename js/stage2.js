@@ -33,11 +33,28 @@ function getSecondLevel(game, player) {
   game.stage = stage;
   game.currentLevel = 2;
 
+  if (game.clearBackground) { game.clearBackground(); }
+
+  var bg = new Sprite(3280, 480);
+  bg.image = game.assets['assets/story-scenes/lvl2.png'];
+  var leafs = new Sprite(640, 96);
+  leafs.image = game.assets['assets/bright-roof.png'];
+  var leafs2 = new Sprite(640, 96);
+  leafs2.image = game.assets['assets/bright-roof-2.png'];
+
+  game.rootScene.addChild(bg);
+
+  game.bg = bg;
+  game.leafs = leafs;
+  game.leafs2 = leafs2;
+
+
   map.image = game.assets['assets/map-bright.png'];
   map.loadData(mapaLevel2);
 
   player.x = 64;
   player.y = 0;
+  player.jumpcnt = 9;
 
   player.resetPlayer();
 
@@ -112,6 +129,10 @@ function getSecondLevel(game, player) {
             stage  : stage,
         });
 
+/*<<<<<<< HEAD
+=======*/
+  game.showMessage('assets/menu/game-over.png');
+/*>>>>>>> 980255e281b1683d4caf0342766c800427ea93af*/
 
   return stage;
 }
@@ -146,6 +167,7 @@ function getThirdLevel(game, player) {
 
   player.x = 64;
   player.y = 0;
+  player.jumpcnt = 9;
 
   player.resetPlayer();
 
@@ -215,17 +237,25 @@ function getThirdLevel(game, player) {
   stage.addChild(new Enemy(32 * 130, 32 * 6, 16 , 'bee', 10, 0, true));
   stage.addChild(new Enemy(32 * 129, 32 * 7, 16 , 'bee', 14, 0, true));
 
-  stage.addChild(new Enemy(32 * 132, 32 * 7, 32 , 'zombie', 13, 6, true, 7));
-  stage.addChild(new Enemy(32 * 133, 32 * 7, 32 , 'zombie', 13, 6, true, 7));
+  stage.addChild(new Enemy(32 * 132, 32 * 7, 32 , 'zombie', 8, 6, true, 7));
+  stage.addChild(new Enemy(32 * 133, 32 * 7, 32 , 'zombie', 5, 6, true, 7));
   
   stage.addChild(new Enemy(32 * 135, 32 * 7, 32 , 'zombie', 12, 6, true, 7));
   stage.addChild(new Enemy(32 * 136, 32 * 7, 32 , 'zombie', 8, 6, true, 7));
-  stage.addChild(new Enemy(32 * 135, 32 * 7, 16 , 'bee', 14, 0, true));
+  stage.addChild(new Enemy(32 * 135, 32 * 6, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 136, 32 * 5, 16 , 'bee', 10, 0, true));
+
+  stage.addChild(new Enemy(32 * 138, 32 * 7, 32 , 'zombie', 12, 6, true, 7));
+  stage.addChild(new Enemy(32 * 139, 32 * 7, 32 , 'zombie', 8, 6, true, 7));
+  stage.addChild(new Enemy(32 * 139, 32 * 5, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 138, 32 * 6, 16 , 'bee', 10, 0, true));
+
 /*=======*/
   window.healthbar = new HealthBar({
     stage  : stage,
   });
 
+  game.showMessage('assets/menu/game-over.png');
     // Cherries.
     var cherries = [
 //	{x: 32, y: 45},

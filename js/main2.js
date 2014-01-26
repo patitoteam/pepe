@@ -11,6 +11,7 @@ game.preload(
     'assets/player.gif',
     'assets/noir-background.png',
     'assets/story-scenes/010-redisbad.png',
+    'assets/story-scenes/lvl2.png',
     'fish.png',
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
@@ -106,7 +107,7 @@ var Enemy = Class.create(Sprite, {
 
 
         if(this.evil && this.intersect(player)){
-            if( this.x % 5 == 0 || this.x % 7 == 0) 
+            if( this.x % 5 == 0 || this.x % 7 == 0)
                 player.opacity = 0.5;
 
             if(game.frame % 6 == 0){
@@ -177,7 +178,7 @@ window.onload = function() {
 
         player = new Player(30, 0);
 
-        var stage = getThirdLevel(game, player);
+        var stage = getFirstLevel(game, player);
 
 
         // For moving all map on the enter_frame event
@@ -185,12 +186,14 @@ window.onload = function() {
         var menuScene = Scene();
 
         game.stage = stage;
-        menuScene.addChild(menuMaker("assets/menu/start.png", 100));
-        menuScene.addChild(menuMaker("assets/menu/help.png", 155,function(){
-            alert("ayuda");
+        menuScene.addChild(menuMaker("assets/menu/start.png", 100, function() {
+            game.showMessage('assets/menu/game-over.png');
         }));
+        // menuScene.addChild(menuMaker("assets/menu/help.png", 155,function(){
+        //     alert("ayuda");
+        // }));
 
-        menuScene.addChild(menuMaker("assets/menu/exit.png", 210));
+        // menuScene.addChild(menuMaker("assets/menu/exit.png", 210));
         game.pushScene(menuScene);
 
 
