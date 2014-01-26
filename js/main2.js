@@ -19,8 +19,6 @@ game.preload(
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
     'assets/menu/start.png',
-    'assets/menu/help.png',
-    'assets/menu/exit.png',
     'assets/health-sprite.png',
     'assets/menu/game-over.png',
     'assets/menu/ganaste.png',
