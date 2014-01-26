@@ -171,8 +171,8 @@ var Player = Class.create(Sprite, {
     	    else if(this.frame == 7) this.frame = 5;
     	}
 
-	// Meh..
-        if(this.life<=0) {
+	// Game Over when Pepe falls.
+        if(this.y >= game.height) {
             console.log("finished");
             if (game.currentLevel === 3) {
                 game.rootScene.removeChild(game.currentStage);
@@ -184,8 +184,7 @@ var Player = Class.create(Sprite, {
             }
         }
 
-	// Game Over when Pepe falls.
-        if(this.y >= game.height) {
+        if(this.life<=0) {
             console.log("finished");
             if (game.currentLevel === 3) {
                 game.rootScene.removeChild(game.currentStage);
