@@ -10,6 +10,7 @@ game.preload(
     'assets/map-noir.png',
     'assets/player.gif',
     'assets/noir-background.png',
+    'assets/story-scenes/010-redisbad.png',
     'fish.png',
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
@@ -205,7 +206,7 @@ window.onload = function() {
 	}
 
 	// Health Bar
-        var healthbar = new HealthBar({
+        window.healthbar = new HealthBar({
             stage  : stage,
         });
 
@@ -218,8 +219,8 @@ window.onload = function() {
             y = Math.max(game.height, y + this.map.height) - this.map.height;
             this.stage.x = x;
             this.stage.y = y;
-            healthbar.setPoints(player.life);
-            healthbar.displace(x);
+            window.healthbar.setPoints(player.life);
+            window.healthbar.displace(x);
         }).bind(this));
 
         // Animation for leafs(background)

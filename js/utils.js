@@ -441,6 +441,22 @@ Game.prototype.winGame = function(asset) {
     this.pushScene(endScene);
 };
 
+Game.prototype.showMessage = function(asset) {
+    var endScene = Scene();
+    var sp = new Sprite(255, 125);
+    sp.image = this.assets[asset];
+    // endScene.backgroundColor = 'rgba(255,255,255,0.3)';
+    sp.opacity = 0.5;
+    sp.frame = 0;
+    sp.x = Math.floor(game.width / 2) - Math.floor(sp.width/2);
+    sp.y = Math.floor(game.height / 2) - Math.floor(sp.height/2);
+    endScene.width = this.width;
+    endScene.height = this.height;
+    endScene.addChild(sp);
+
+    this.pushScene(endScene);
+};
+
 var HealthBar = Class.create( Group, {
     initialize: function(args){
         Group.call(this, {});

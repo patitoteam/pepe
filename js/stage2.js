@@ -72,6 +72,9 @@ function getSecondLevel(game, player) {
   stage.addChild(new Enemy(32 * 96, 32 * 7, 32 , 'worm', 1, 1, true));
   stage.addChild(new Enemy(32 * 98, 32 * 7, 32 , 'worm', 1, 1, true));
 
+  window.healthbar = new HealthBar({
+            stage  : stage,
+        });
 
   return stage;
 }
@@ -82,7 +85,7 @@ function getThirdLevel(game, player) {
   if (game.clearBackground) { game.clearBackground(); }
 
   var bg = new Sprite(3280, 480);
-  bg.image = game.assets['assets/noir-background.png'];
+  bg.image = game.assets['assets/story-scenes/010-redisbad.png'];
 
   var leafs = new Sprite(640, 96);
   leafs.image = game.assets['assets/bright-roof.png'];
@@ -113,6 +116,10 @@ function getThirdLevel(game, player) {
   stage.addChild(player);
 
   leafs.tl.fadeOut(70).fadeIn(70).loop();
+
+  window.healthbar = new HealthBar({
+    stage  : stage,
+  });
 
   return stage;
 }

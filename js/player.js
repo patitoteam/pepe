@@ -91,6 +91,7 @@ var Player = Class.create(Sprite, {
             var stage;
             if (game.currentLevel === 1) {
                 stage = getSecondLevel(game, this);
+                // game.showMessage('assets/menu/game-over.png');
                 game.currentStage = stage;
                 game.rootScene.addChild(stage);
             } else if (game.currentLevel === 2) {
