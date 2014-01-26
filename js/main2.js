@@ -7,8 +7,10 @@ game.preload(
     'assets/bright-roof-2.png',
     'assets/bright-background.png',
     'assets/map-bright.png',
+    'assets/map-noir.png',
     'assets/player.gif',
     'cara.png',
+    'fish.png',
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
     'assets/menu/start.png',
@@ -203,6 +205,7 @@ window.onload = function() {
         stage.addChild(player);
         stage.finalPosition = 3100;
         game.currentStage = stage;
+        game.currentLevel = 1;
 
         game.rootScene.addChild(stage);
         game.rootScene.setInterval(3000, function(){

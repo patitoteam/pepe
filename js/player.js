@@ -89,7 +89,12 @@ var Player = Class.create(Sprite, {
         if (this.x >= game.currentStage.finalPosition) {
             console.log('termino nivel ');
             game.rootScene.removeChild(game.currentStage);
-            var stage = getSecondLevel(game, this);
+            var stage;
+            if (game.currentLevel === 1) {
+                stage = getSecondLevel(game, this);
+            } else if (game.currentLevel === 2) {
+                stage = getThirdLevel(game, this);
+            }
             game.currentStage = stage;
             game.rootScene.addChild(stage);
         }
@@ -116,6 +121,7 @@ var Player = Class.create(Sprite, {
 
         player.x += this.xx;
 
+        // console.log('x> ' + player.x);
 	// Interjection with the left.
         if (map.hitTest(player.x,player.y+8 + 8)){
             this.x = Math.floor(this.x / 16) * 16 + 14;
