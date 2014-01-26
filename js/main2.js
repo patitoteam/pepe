@@ -78,7 +78,8 @@ var Rat = Class.create(Sprite, {
         // Choque con el enemigo.
         if(this.within(player)) {
             player.opacity = 0.5;
-
+            if(game.frame % 6 == 0)
+                player.life--;
             // Animación.
             console.log(player.xx);
             if(player.xx > 0)
@@ -154,7 +155,7 @@ var GuineaPig = Class.create(Sprite, {
 // -----------------------------------------------------------------------------
 
 var game = new Game(640, 320);
-<<<<<<< HEAD
+
 game.fps = 17;
 game.preload(
     'assets/apple.png',
@@ -226,7 +227,8 @@ window.onload = function() {
         var life = Label();
         stage.addChild(map);
         stage.addChild(player);
-        // stage.addChild(rata);
+        var rata = new Rat(100, 1);
+         stage.addChild(rata);
 
 
         stage.finalPosition = 3100;
