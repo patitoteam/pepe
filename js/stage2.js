@@ -74,11 +74,48 @@ function getSecondLevel(game, player) {
   stage.addChild(new Enemy(32 * 96, 32 * 7, 32 , 'worm', 1, 1, true));
   stage.addChild(new Enemy(32 * 98, 32 * 7, 32 , 'worm', 1, 1, true));
 
+
   stage.addChild(new Enemy(32 * 130, 32 * 8, 32 , 'zombie', 7, 7, true, 7));
   stage.addChild(new Enemy(32 * 140, 32 * 8, 32 , 'zombie', 7, 7, true, 7));
 
+    // Cherries.
+    var cherries = [
+	{x: 32, y: 45},
+	{x: 64, y: 45},
+	{x: 96, y: 45},
+	{x: 27*(32), y: 5*(32)},
+	{x: 45*(32), y: 6*(32)},
+	{x: 54*(32), y: 1*(32)},
+	{x: 54*(32), y: 5*(32)},
+	{x: 78*(32), y: 6*(32)},
+	{x: 128.6*(32), y: 6*(32)},
+	{x: 132.6*(32), y: 6*(32)},
+	{x: 136.6*(32), y: 6*(32)}
+    ];
+
+    for(var i=0; i< cherries.length; i++) {
+        stage.addChild(new Fruit({
+	    image: game.assets['assets/powerups/bright/cherry-sprite.png'],
+	    player: player,
+	    map: self.map,
+	    width: 16,
+	    height: 16,
+	    x: cherries[i].x,
+	    y: cherries[i].y,
+	    val: 1,
+	    stage: stage,
+	    game: game
+        }));
+    }
+
+  window.healthbar = new HealthBar({
+            stage  : stage,
+        });
+
+
   return stage;
 }
+
 function getThirdLevel(game, player) {
   var stage = new Group();
   map = new Map(32, 32);
@@ -86,7 +123,7 @@ function getThirdLevel(game, player) {
   if (game.clearBackground) { game.clearBackground(); }
 
   var bg = new Sprite(3280, 480);
-  bg.image = game.assets['assets/noir-background.png'];
+  bg.image = game.assets['assets/story-scenes/010-redisbad.png'];
 
   var leafs = new Sprite(640, 96);
   leafs.image = game.assets['assets/bright-roof.png'];
@@ -143,6 +180,8 @@ function getThirdLevel(game, player) {
   stage.addChild(new Enemy(32 * 91, 32 * 7, 32 , 'zombie', 2, 1, true, 7));
   stage.addChild(new Enemy(32 * 88, 32 * 3, 32 , 'zombie', 1, 1, true, 7));
 
+/*<<<<<<< HEAD*/
+
   stage.addChild(new Enemy(32 * 108, 32 * 5, 32 , 'honeycomb', 0, 0, true));
   stage.addChild(new Enemy(32 * 115, 32 * 4, 32 , 'bee', 10, 0, true));
   stage.addChild(new Enemy(32 * 109, 32 * 4, 16 , 'bee', 10, 0, true));
@@ -156,20 +195,59 @@ function getThirdLevel(game, player) {
 
   stage.addChild(new Enemy(32 * 59, 32 * 6, 16 , 'bee', 10, 0, true));
   stage.addChild(new Enemy(32 * 63, 32 * 6, 16 , 'bee', 8, 0, true));
-
-
-  stage.addChild(new Enemy(32 * 120, 32 * 7, 32 , 'zombie', 13, 7, true, 7));
-
+  stage.addChild(new Enemy(32 * 62, 32 * 7, 16 , 'bee', 7, 0, true));
   stage.addChild(new Enemy(32 * 53, 32 * 7, 32 , 'zombie', 7, 7, true, 7));
   stage.addChild(new Enemy(32 * 57, 32 * 7, 32 , 'zombie', 6, 6, true, 7));
-  stage.addChild(new Enemy(32 * 62, 32 * 7, 16 , 'bee', 7, 0, true));
-
-  
+  stage.addChild(new Enemy(32 * 57, 32 * 7, 32 , 'zombie', 6, 6, true, 7));
   stage.addChild(new Enemy(32 * 59, 32 * 7, 32 , 'zombie', 7, 7, true, 7));
 
-  stage.addChild(new Enemy(32 * 57, 32 * 7, 32 , 'zombie', 6, 6, true, 7));
+  /*El gran final*/
+
+  stage.addChild(new Enemy(32 * 120, 32 * 7, 32 , 'zombie', 5, 7, true, 7));
+  //stage.addChild(new Enemy(32 * 123, 32 * 7, 32 , 'zombie', 13, 6, true, 7));
+  stage.addChild(new Enemy(32 * 123, 32 * 5, 16 , 'bee', 11, 0, true));
+  stage.addChild(new Enemy(32 * 124, 32 * 6, 16 , 'bee', 5, 0, true));
   
-  leafs.tl.fadeOut(70).fadeIn(70).loop();
+  stage.addChild(new Enemy(32 * 127, 32 * 7, 32 , 'zombie', 13, 6, true, 7));
+
+  //stage.addChild(new Enemy(32 * 129, 32 * 7, 32 , 'zombie', 10, 6, true, 7));
+  stage.addChild(new Enemy(32 * 129, 32 * 5, 16 , 'bee', 8, 0, true));
+  stage.addChild(new Enemy(32 * 130, 32 * 6, 16 , 'bee', 10, 0, true));
+  stage.addChild(new Enemy(32 * 129, 32 * 7, 16 , 'bee', 14, 0, true));
+
+  stage.addChild(new Enemy(32 * 132, 32 * 7, 32 , 'zombie', 13, 6, true, 7));
+  stage.addChild(new Enemy(32 * 133, 32 * 7, 32 , 'zombie', 13, 6, true, 7));
+  
+  stage.addChild(new Enemy(32 * 135, 32 * 7, 32 , 'zombie', 12, 6, true, 7));
+  stage.addChild(new Enemy(32 * 136, 32 * 7, 32 , 'zombie', 8, 6, true, 7));
+  stage.addChild(new Enemy(32 * 135, 32 * 7, 16 , 'bee', 14, 0, true));
+/*=======*/
+  window.healthbar = new HealthBar({
+    stage  : stage,
+  });
+
+    // Cherries.
+    var cherries = [
+//	{x: 32, y: 45},
+    ];
+
+    for(var i=0; i< cherries.length; i++) {
+        stage.addChild(new Fruit({
+	    image: game.assets['assets/powerups/bright/cherry-sprite.png'],
+	    player: player,
+	    map: self.map,
+	    width: 16,
+	    height: 16,
+	    x: cherries[i].x,
+	    y: cherries[i].y,
+	    val: 1,
+	    stage: stage,
+	    game: game
+        }));
+    }
+
+/*>>>>>>> 96db6a64392807d6c3f5a76c6ccfffcebb060f75*/
+leafs.tl.fadeOut(70).fadeIn(70).loop();
   return stage;
     
 }

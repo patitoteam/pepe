@@ -10,6 +10,7 @@ game.preload(
     'assets/map-noir.png',
     'assets/player.gif',
     'assets/noir-background.png',
+    'assets/story-scenes/010-redisbad.png',
     'fish.png',
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
@@ -105,8 +106,7 @@ var Enemy = Class.create(Sprite, {
 
 
         if(this.evil && this.intersect(player)){
-            console.log('intersect');
-            if( this.x % 5 == 0 || this.x % 7 == 0)
+            if( this.x % 5 == 0 || this.x % 7 == 0) 
                 player.opacity = 0.5;
 
             if(game.frame % 6 == 0){
@@ -132,8 +132,8 @@ var Enemy = Class.create(Sprite, {
                 player.damaged = false;
             }
         }
-
-        document.getElementById('pos').innerText = 'X: '+ player.x/32 + ' , Y: ' + player.y/32;
+        //Ver la posicion del personaje en tamaños de 32 x 32
+        //document.getElementById('pos').innerText = 'X: '+ player.x/32 + ' , Y: ' + player.y/32;
     }
 });
 
@@ -177,10 +177,6 @@ window.onload = function() {
 
         player = new Player(30, 0);
 
-
-
-        console.log('llega aquiasdfasdfsadf');
-
         var stage = getThirdLevel(game, player);
 
 
@@ -214,25 +210,8 @@ window.onload = function() {
             // stage.addChild(life);
         });
 
-	// Cherries in the first map.
-	var cherries = [{x: 10, y: 60}, {x: 30, y: 60}, {x: 50, y: 60}, {x: 70, y: 60}];
-	for(var i=0; i< cherries.length; i++) {
-        stage.addChild(new Fruit({
-          image: game.assets['assets/powerups/bright/cherry-sprite.png'],
-          player: player,
-          map: self.map,
-          width: 16,
-          height: 16,
-          x: cherries[i].x,
-          y: cherries[i].y,
-          val: 50,
-          stage: stage,
-          game: game
-        }));
-	}
-
 	// Health Bar
-        var healthbar = new HealthBar({
+        window.healthbar = new HealthBar({
             stage  : stage,
         });
 
@@ -245,8 +224,8 @@ window.onload = function() {
             y = Math.max(game.height, y + this.map.height) - this.map.height;
             this.stage.x = x;
             this.stage.y = y;
-            healthbar.setPoints(player.life);
-            healthbar.displace(x);
+            window.healthbar.setPoints(player.life);
+            window.healthbar.displace(x);
         }).bind(this));
 
         // Animation for leafs(background)

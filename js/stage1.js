@@ -55,5 +55,50 @@ function getFirstLevel(game, player) {
   stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, true));
   
 
+    // Cherries.
+    var cherries = [
+	{x: 32, y: 45},
+	{x: 64, y: 45},
+	{x: 96, y: 45},
+	{x: 27*(32), y: 5*(32)},
+	{x: 57*(32), y: 6*(32)},
+	{x: 62.2*(32), y: 5*(32)},
+	{x: 67*(32), y: 4*(32)}
+    ];
+
+    for(var i=0; i< cherries.length; i++) {
+        stage.addChild(new Fruit({
+	    image: game.assets['assets/powerups/bright/cherry-sprite.png'],
+	    player: player,
+	    map: self.map,
+	    width: 16,
+	    height: 16,
+	    x: cherries[i].x,
+	    y: cherries[i].y,
+	    val: 2,
+	    stage: stage,
+	    game: game
+        }));
+    }
+    
+    stage.addChild(new Enemy(32 * 30, 39 * 1, 32 , 'worm', 3, 1, true));
+    stage.addChild(new Enemy(32 * 18, 39 * 1, 32 , 'worm', 3, 1, true));
+    stage.addChild(new Enemy(32 * 17, 39 * 1, 32 , 'worm', 3, 1, true));
+    stage.addChild(new Enemy(32 * 79, 32 * 7, 32 , 'worm', 3, 1, true));
+
+    stage.addChild(new Enemy(32 * 96, 32 * 6, 32 , 'worm', 3, 1, true));
+    stage.addChild(new Enemy(32 * 94, 32 * 6, 32 , 'worm', 3, 1, true));
+    stage.addChild(new Enemy(32 * 43, 32 * 8, 32 , 'worm', 5, 1, true));
+    stage.addChild(new Enemy(32 * 40, 32 * 8, 32 , 'worm', 3, 1, true));
+
+
+    stage.addChild(new Enemy(32 * 57, 32 * 8, 16 , 'bee', 5, 0, true));
+    stage.addChild(new Enemy(32 * 70, 32 * 8, 16 , 'bee', 3, 0, true));
+    stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
+    stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 7, 0, true));
+    stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
+    stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 10, 0, true));
+    stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, false));
+
   return stage;
 }
