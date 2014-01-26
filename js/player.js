@@ -16,8 +16,19 @@ var Player = Class.create(Sprite, {
         this.muki=0;
         this.bulletcnt=0;
         this.missilecnt=0;
-        console.log('Se creo player');
-
+    },
+    resetPlayer: function() {
+        this.xx= 0;
+        this.yy = 0;
+        this.opacity = 1;
+        this.damage=0;
+        this.speed = 7;
+        this.jump = false;
+        this.jumpcnt=0;
+        this.frame = 0;
+        this.muki=0;
+        this.bulletcnt=0;
+        this.missilecnt=0;
     },
     onenterframe: function() {
         if(game.input.up){
@@ -45,7 +56,6 @@ var Player = Class.create(Sprite, {
             //this.yy += 0.6;
 	    if(this.yy < 20)
 		this.yy += 2;
-	    console.log(this.yy);
         }else{
             this.jump = true;
             this.yy =0;
@@ -62,12 +72,20 @@ var Player = Class.create(Sprite, {
 
 	// Moving to the right.
         if (game.input.right) {
-	    this.xx = this.speed;
-	}
+        this.xx = this.speed;
 
+	}
+        // Cuando termino el nivel, cambiará al segundo :3
+        if (this.x >= game.currentStage.finalPosition) {
+            console.log('termino nivel ');
+            game.rootScene.removeChild(game.currentStage);
+            var stage = getSecondLevel(game, this);
+            game.currentStage = stage;
+            game.rootScene.addChild(stage);
+        }
 	// Moving to the left.
         if (game.input.left) {
-	    this.xx = -this.speed;
+        this.xx = -this.speed;
 	}
 
         if(game.input.left === false && game.input.right === false){

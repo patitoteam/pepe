@@ -154,7 +154,7 @@ var GuineaPig = Class.create(Sprite, {
 // -----------------------------------------------------------------------------
 
 var game = new Game(640, 320);
-game.fps = 17;
+game.fps = 16;
 game.preload('assets/bright-roof.png', 'assets/bright-roof-2.png','assets/bright-background.png','assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png');
 
 window.onload = function() {
@@ -167,11 +167,15 @@ window.onload = function() {
         var leafs = new Sprite(640, 96);
         leafs.image = game.assets['assets/bright-roof.png'];
 
-        // game.rootScene.backgroundColor = 'red';
+        var leafs2 = new Sprite(640, 96);
+        leafs2.image = game.assets['assets/bright-roof-2.png'];
+
         game.rootScene.addChild(bg);
+        game.rootScene.addChild(leafs2);
         game.rootScene.addChild(leafs);
 
         map = new Map(32, 32);
+        this.map = map;
         map.image = game.assets['assets/map-bright.png'];
         map.loadData(mapa1);
         // map.collisionData = mapa3;
@@ -183,6 +187,10 @@ window.onload = function() {
         var rata = new Rat(10, 0);
 
         var stage = new Group();
+
+        // For moving all map on the enter_frame event
+        this.stage = stage;
+
         var menuScene = Scene();
 
 
@@ -200,17 +208,23 @@ window.onload = function() {
         stage.addChild(player);
         stage.addChild(rata);
 
+        stage.finalPosition = 3100;
+        game.currentStage = stage;
+
         game.rootScene.addChild(stage);
 
-        game.rootScene.addEventListener(Event.ENTER_FRAME, function(e) {
+        game.rootScene.addEventListener(Event.ENTER_FRAME, (function(e) {
             // Realiza el scroll del background
             var x = Math.min((game.width - 16) / 2 - player.x, 0);
             var y = Math.min((game.height - 16) / 2 - player.y, 0);
-            x = Math.max(game.width, x + map.width) - map.width;
-            y = Math.max(game.height, y + map.height) - map.height;
-            stage.x = x;
-            stage.y = y;
-        });
+            x = Math.max(game.width, x + this.map.width) - this.map.width;
+            y = Math.max(game.height, y + this.map.height) - this.map.height;
+            this.stage.x = x;
+            this.stage.y = y;
+        }).bind(this));
+
+        // Animation for leafs(background)
+        leafs.tl.fadeOut(70).fadeIn(70).loop();
   };
   game.start();
 };
