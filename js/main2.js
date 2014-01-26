@@ -205,7 +205,7 @@ window.onload = function() {
         var life = Label();
         stage.addChild(map);
         stage.addChild(player);
-        stage.addChild(rata);
+        // stage.addChild(rata);
 
         stage.finalPosition = 3100;
         game.currentStage = stage;
