@@ -78,7 +78,8 @@ var Rat = Class.create(Sprite, {
         // Choque con el enemigo.
         if(this.within(player)) {
             player.opacity = 0.5;
-
+            if(game.frame % 6 == 0)
+                player.life--;
             // Animación.
             console.log(player.xx);
             if(player.xx > 0)
@@ -154,11 +155,30 @@ var GuineaPig = Class.create(Sprite, {
 // -----------------------------------------------------------------------------
 
 var game = new Game(640, 320);
+
+game.fps = 17;
+game.preload(
+    'assets/apple.png',
+    'assets/bright-roof.png',
+    'assets/bright-roof-2.png',
+    'assets/bright-background.png',
+    'assets/map-bright.png',
+    'assets/player.gif',
+    'cara.png',
+    'assets/guinea-pig.png',
+    'assets/powerups/bright/cherry-sprite.png',
+    'assets/menu/start.png',
+    'assets/menu/help.png',
+    'assets/menu/exit.png',
+    'assets/health-sprite.png'
+);
+
 game.fps = 15;
+
 game.preload('assets/apple.png','assets/bright-roof.png', 'assets/bright-roof-2.png','assets/bright-background.png','assets/map-bright.png', 'assets/player.gif', 'cara.png', 'assets/guinea-pig.png', 'assets/powerups/bright/cherry-sprite.png');
 
-window.onload = function() {
 
+window.onload = function() {
     game.onload = function() {
         self = this;
         // Load the background
@@ -196,16 +216,20 @@ window.onload = function() {
 
 
         game.stage = stage;
-        menuScene.addChild(menuMaker("Start",50,50));
-        menuScene.addChild(menuMaker("Help",50,100));
-        menuScene.addChild(menuMaker("Exit",50,150));
+        menuScene.addChild(menuMaker("assets/menu/start.png", 100));
+        menuScene.addChild(menuMaker("assets/menu/help.png", 155,function(){
+            alert("ayuda");
+        }));
+        menuScene.addChild(menuMaker("assets/menu/exit.png", 210));
         game.pushScene(menuScene);
 
 
         var life = Label();
         stage.addChild(map);
         stage.addChild(player);
-        // stage.addChild(rata);
+        var rata = new Rat(100, 1);
+         stage.addChild(rata);
+
 
         stage.finalPosition = 3100;
         game.currentStage = stage;
@@ -221,6 +245,7 @@ window.onload = function() {
             stage.addChild(life);
         });
 
+	// Cherries in the first map.
 	var V = [40, 500, 600, 1000];
 	for(var i=0; i<=V.length; i++) {
             stage.addChild(new Fruit({
@@ -236,6 +261,14 @@ window.onload = function() {
 		game: game
             }));
 	}
+	
+	// Health Bar
+        var healthbar = new HealthBar({
+            x : 50,
+            y : 0,
+            stage  : stage,
+            player  : player
+        });
 
         game.rootScene.addEventListener(Event.ENTER_FRAME, (function(e) {
             // Realiza el scroll del background
