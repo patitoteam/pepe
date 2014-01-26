@@ -9,7 +9,6 @@ game.preload(
     'assets/map-bright.png',
     'assets/map-noir.png',
     'assets/player.gif',
-    'cara.png',
     'fish.png',
     'assets/guinea-pig.png',
     'assets/powerups/bright/cherry-sprite.png',
@@ -29,64 +28,11 @@ game.preload(
     'music/mordido_por_zombie.wav',
     'music/nivel_terminado.wav',
     'music/salto.wav',
-    'music/why_so_serious.mp3'
+    'music/why_so_serious.mp3',
+    'worm.png'
 );
 
 game.fps = 15;
-
-/*************************************************Stage 1****************************************************/
-var map;
-var mapaLevel1 =[
-    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-    [3,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,7,7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1,-1,-1,-1,-1,-1],
-    [8,3,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,8,8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2,1,8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,7,7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2,1,1,1,1,-1,-1,-1,1,1,3],
-    [8,8,3,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2,1,7,1,3,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,8,-1,-1,-1,8,-1,-1,-1,-1,-1,-1,-1,-1,-1,2,1,1,1,3,-1,-1,-1,-1,-1,7,7,7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2,8,8,3,-1,2,8,8,3,-1,-1,-1,2,1,1,1,1,1,1,1,1,1,1,1,4],
-    [8,8,8,1,1,3,-1,-1,-1,-1,2,1,1,8,8,8,8,8,3,-1,-1,2,1,1,3,-1,-1,-1,-1,2,1,1,1,1,1,1,3,-1,-1,-1,-1,-1,-1,-1,2,1,1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,8,8,8,8,8,8,8,8,8,8,-1,-1,2,8,8,8,8,8,8,8,8,8,8,8,8,4],
-    [8,8,8,8,8,8,3,-1,-1,2,1,8,8,8,8,8,8,8,4,-1,-1,5,8,8,4,-1,-1,-1,-1,5,8,8,8,8,8,8,8,8,8,13,10,11,11,2,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-];
-function getFirstLevel(game, player) {
-  var stage = new Group();
-  map = new Map(32, 32);
-
-  game.map = map;
-  game.stage = stage;
-
-  map.image = game.assets['assets/map-bright.png'];
-  map.loadData(mapaLevel1);
-
-  player.x = 30;
-  player.y = 0;
-
-  player.resetPlayer();
-
-  stage.addChild(map);
-  stage.addChild(player);
-
-    stage.addChild(new Enemy(32 * 30, 39, 16 , 'cara', 3, 1, true));
-        stage.addChild(new Enemy(32 * 18, 39, 16 , 'cara', 3, 1, true));
-        stage.addChild(new Enemy(32 * 17, 39, 16 , 'cara', 3, 1, true));
-        stage.addChild(new Enemy(32 * 79, 32 * 7, 16 , 'cara', 3, 1, true));
-
-        stage.addChild(new Enemy(32 * 96, 32 * 6, 16 , 'cara', 3, 1, true));
-        stage.addChild(new Enemy(32 * 94, 32 * 6, 16 , 'cara', 3, 1, true));
-        stage.addChild(new Enemy(32 * 43, 32 * 8, 16 , 'cara', 5, 1, true));
-        stage.addChild(new Enemy(32 * 40, 32 * 8, 16 , 'cara', 3, 1, true));
-
-
-        stage.addChild(new Enemy(32 * 57, 32 * 8, 16 , 'bee', 5, 0, true));
-        stage.addChild(new Enemy(32 * 70, 32 * 8, 16 , 'bee', 3, 0, true));
-        stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
-        stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 7, 0, true));
-        stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
-        stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 10, 0, true));
-        stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, false));
-  return stage;
-}
-/***********************************************************************************************************/
 
 var DIR_LEFT = 0;
 var DIR_RIGHT = 1;
@@ -108,36 +54,41 @@ var Enemy = Class.create(Sprite, {
         this.y = y;
         this.xx = velocityX;//Velocidad en x
         this.yy = velocityY;
-        this.frame = [40,40,41,41];
+        this.frame = [0,0,1,1];
         this.dir = 0; // direction 0: right 1: left
-        //stage.addChild(this);
-
     },
     onenterframe: function(){
-        if(this.dir == RIGHT && map.hitTest(this.x + this.size, this.y)){
+
+        if(this.dir == RIGHT && map.hitTest(this.x + this.size, this.y + this.size / 2)){
             this.xx = -this.xx;
             this.dir = LEFT;
-            this.frame= [42,42,43,43];
-        }else if(this.dir == LEFT && map.hitTest(this.x, this.y)){
+            this.frame= [2,2,3,3];
+
+        }else if(this.dir == LEFT && map.hitTest(this.x, this.y + this.size / 2)){
             this.xx = -this.xx;
             this.dir = RIGHT;
-            this.frame = [40,40,41,41];
+            this.frame = [0,0,1,1];
         }
+
         if(!map.hitTest(this.x, this.y + this.size) && !map.hitTest(this.x + this.size, this.y + this.size))
             this.y += this.yy;
 
         this.x += this.xx;
 
-
-        if(this.evil && this.within(player) && ( this.x % 5 == 0 || this.x % 7 == 0) ){
-            player.opacity = 0.5;
+        if(this.evil && this.intersect(player)){
+            console.log('intersect');
+            if( this.x % 5 == 0 || this.x % 7 == 0) 
+                player.opacity = 0.5;
+            
             if(game.frame % 6 == 0)
                 player.life--;
+            
             // Animación.
             if(player.xx > 0)
-            player.frame = 3;
+                player.frame = 3;
+
             if(player.xx < 0)
-            player.frame = 4;
+                player.frame = 4;
             player.damaged = true;
         } else {
             if(!player.damaged) {
@@ -146,6 +97,8 @@ var Enemy = Class.create(Sprite, {
                 player.damaged = false;
             }
         }
+
+        document.getElementById('pos').innerText = 'X: '+ player.x/32 + ' , Y: ' + player.y/32;
     }
 });
 
