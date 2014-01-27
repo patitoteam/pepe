@@ -12,8 +12,21 @@ var mapaLevel1 =[
     [8,8,8,8,8,8,3,-1,-1,2,1,8,8,8,8,8,8,8,4,-1,-1,5,8,8,4,-1,-1,-1,-1,5,8,8,8,8,8,8,8,8,8,13,10,11,11,2,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 function getFirstLevel(game, player) {
+  var bg = new Sprite(640, 320);
+  bg.image = game.assets['assets/bright-background.png'];
+  var leafs = new Sprite(640, 96);
+  leafs.image = game.assets['assets/bright-roof.png'];
+  var leafs2 = new Sprite(640, 96);
+  leafs2.image = game.assets['assets/bright-roof-2.png'];
 
-  console.log('llega aqui');
+
+  game.rootScene.addChild(bg);
+  game.rootScene.addChild(leafs2);
+  game.rootScene.addChild(leafs);
+
+  game.bg = bg;
+  game.leafs2 = leafs2;
+  game.leafs = leafs;
 
   var stage = new Group();
   map = new Map(32, 32);
@@ -29,7 +42,7 @@ function getFirstLevel(game, player) {
 
   player.resetPlayer();
   player.jumpcnt = 10;
-  player.life = 6;
+  player.life = 10;
 
   stage.addChild(map);
   stage.addChild(player);
@@ -101,6 +114,11 @@ function getFirstLevel(game, player) {
     stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
     stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 10, 0, true));
     stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, false));
+
+    window.healthbar = new HealthBar({
+      stage  : stage,
+    });
+
 
   return stage;
 }

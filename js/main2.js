@@ -156,27 +156,13 @@ window.onload = function() {
         game.firstTheme.play();
 
         // Load the background
-        var bg = new Sprite(640, 320);
-        bg.image = game.assets['assets/bright-background.png'];
 
-        var leafs = new Sprite(640, 96);
-        leafs.image = game.assets['assets/bright-roof.png'];
-
-        var leafs2 = new Sprite(640, 96);
-        leafs2.image = game.assets['assets/bright-roof-2.png'];
-
-        game.bg = bg;
-        game.leafs2 = leafs2;
-        game.leafs = leafs;
         game.clearBackground = function() {
-            this.rootScene.removeChild(this.bg);
-            this.rootScene.removeChild(this.leafs2);
-            this.rootScene.removeChild(this.leafs);
+            if(this.bg) this.rootScene.removeChild(this.bg);
+            if(this.leafs2) this.rootScene.removeChild(this.leafs2);
+            if(this.leafs) this.rootScene.removeChild(this.leafs);
         };
 
-        game.rootScene.addChild(bg);
-        game.rootScene.addChild(leafs2);
-        game.rootScene.addChild(leafs);
 
         player = new Player(30, 0);
 

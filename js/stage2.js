@@ -164,6 +164,7 @@ function getThirdLevel(game, player) {
   player.x = 64;
   player.y = 0;
   player.jumpcnt = 9;
+  player.life = 6;
 
   player.resetPlayer();
 

@@ -179,8 +179,15 @@ var Player = Class.create(Sprite, {
                 stage = getThirdLevel(game, this);
                 game.currentStage = stage;
                 game.rootScene.addChild(stage);
+                return;
             } else {
                 game.endGame("GAME OVER");
+
+                game.rootScene.removeChild(game.currentStage);
+                stage = getFirstLevel(game, this);
+                game.currentStage = stage;
+                game.rootScene.addChild(stage);
+                return;
             }
         }
 
@@ -191,8 +198,15 @@ var Player = Class.create(Sprite, {
                 stage = getThirdLevel(game, this);
                 game.currentStage = stage;
                 game.rootScene.addChild(stage);
+                return;
             } else {
                 game.endGame("GAME OVER");
+
+                game.rootScene.removeChild(game.currentStage);
+                stage = getFirstLevel(game, this);
+                game.currentStage = stage;
+                game.rootScene.addChild(stage);
+                return;
             }
         }
     }

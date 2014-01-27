@@ -427,14 +427,15 @@ Game.prototype.endGame = function(text){
     endScene.height = this.height;
     endScene.addChild(sp);
 
-    sp.tl.fadeTo(2, 25);
     this.pushScene(endScene);
+    sp.tl.fadeTo(1, 25).wait(4).then((function() { this.removeScene(endScene); }).bind(this));
 };
 
 Game.prototype.winGame = function(asset) {
     var endScene = Scene();
     var sp = new Sprite(640, 320);
     sp.image = this.assets[asset];
+    sp.opacity = 0.4;
     // endScene.backgroundColor = 'rgba(255,255,255,0.7)';
     sp.frame = 0;
     sp.x = Math.floor(game.width / 2) - Math.floor(sp.width/2);
@@ -443,6 +444,8 @@ Game.prototype.winGame = function(asset) {
     endScene.height = this.height;
     endScene.addChild(sp);
     this.pushScene(endScene);
+
+    sp.tl.fadeTo(1, 25).wait(4).then((function() { this.removeScene(endScene); }).bind(this));
 };
 
 Game.prototype.showMessage = function(asset) {
@@ -450,7 +453,7 @@ Game.prototype.showMessage = function(asset) {
     var sp = new Sprite(596, 298);
     sp.image = this.assets[asset];
     endScene.backgroundColor = 'rgba(255,255,255)';
-    sp.opacity = 0.4;
+    sp.opacity = 0.9;
     sp.frame = 0;
     sp.x = Math.floor(game.width / 2) - Math.floor(sp.width/2);
     sp.y = Math.floor(game.height / 2) - Math.floor(sp.height/2);
@@ -458,7 +461,7 @@ Game.prototype.showMessage = function(asset) {
     endScene.height = this.height;
     endScene.addChild(sp);
     this.pushScene(endScene);
-    sp.tl.fadeTo(1, 25).then((function() { this.removeScene(endScene); }).bind(this));
+    sp.tl.fadeTo(1, 30).wait(14).then((function() { this.removeScene(endScene); }).bind(this));
 };
 
 var HealthBar = Class.create( Group, {
