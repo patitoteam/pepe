@@ -1,4 +1,7 @@
+
 enchant();
+var info = document.getElementById('information');
+info.innerHTML = '';
 var game = new Game(640, 320);
 
 game.preload(
@@ -74,11 +77,9 @@ var Enemy = Class.create(Sprite, {
             }
             this.frame = this.derecha;
         }
-        this.repetir = function(){};
     },
     onenterframe: function(){
 
-        this.repetir();
         /*Volver al inicio cuando muere*/
         if(this.y >= game.height){
             this.x = this.bckX;
@@ -115,8 +116,8 @@ var Enemy = Class.create(Sprite, {
             if(game.frame % 6 == 0){
                 player.life--;
                 obj = game.assets["music/danio_1.wav"];
-				obj.volume = 1;
-				obj.play();
+                obj.volume = 1;
+                obj.play();
             }
 
 
@@ -135,8 +136,9 @@ var Enemy = Class.create(Sprite, {
                 player.damaged = false;
             }
         }
+
         //Ver la posicion del personaje en tamaños de 32 x 32
-        //document.getElementById('pos').innerText = 'X: '+ player.x/32 + ' , Y: ' + player.y/32;
+        //info.innerText = 'X: '+ player.x/32 + ' , Y: ' + player.y/32;
     }
 });
 
@@ -148,21 +150,16 @@ var LEFT = 1;
 
 window.onload = function() {
     game.onload = function() {
-	game.startTime = new Date().getTime();
+        game.startTime = new Date().getTime();
         self = this;
 
-        game.firstTheme = game.assets["music/plastic3_happy_game.mp3"].clone();
-        game.firstTheme.volume = 0.3;
-        game.firstTheme.play();
-
         // Load the background
-
-        game.clearBackground = function() {
-            if(this.bg) this.rootScene.removeChild(this.bg);
-            if(this.leafs2) this.rootScene.removeChild(this.leafs2);
-            if(this.leafs) this.rootScene.removeChild(this.leafs);
-        };
-
+        /*        game.clearBackground = function() {
+         if(this.bg) this.rootScene.removeChild(this.bg);
+         if(this.leafs2) this.rootScene.removeChild(this.leafs2);
+         if(this.leafs) this.rootScene.removeChild(this.leafs);
+         };
+         */
 
         player = new Player(30, 0);
 
@@ -171,7 +168,7 @@ window.onload = function() {
 
         // For moving all map on the enter_frame event
         this.stage = stage;
-        var menuScene = Scene();
+        var menuScene = new Scene();
 
         game.stage = stage;
         menuScene.addChild(menuMaker("assets/menu/start.png", 100, function() {
@@ -186,30 +183,30 @@ window.onload = function() {
         game.pushScene(menuScene);
 
 
-        var life = Label();
+        //var life = new Label();
         stage.addChild(map);
         stage.addChild(player);
         game.currentStage = stage;
 
         game.rootScene.addChild(stage);
-        game.rootScene.setInterval(3000, function(){
-            //player.life -= 10;
-            life.text = player.life;
-            life.color = '#000';
-            life.font = "8px cursive";
-            life.x = 50;
-            life.y = 50;
-            // stage.addChild(life);
-        });
 
-	// Health Bar
-        window.healthbar = new HealthBar({
-            stage  : stage,
-        });
+        /*game.rootScene.setInterval(3000, function(){
+         life.text = player.life;
+         life.color = '#000';
+         life.font = "8px cursive";
+         life.x = 50;
+         life.y = 50;
+         // stage.addChild(life);
+         });
+
+         // Health Bar
+         window.healthbar = new HealthBar({
+         stage  : stage
+         });
+         */
 
         game.rootScene.addEventListener(Event.ENTER_FRAME, (function(e) {
             // Realiza el scroll del background
-
             var x = Math.min((game.width - 16) / 2 - player.x, 0);
             var y = Math.min((game.height - 16) / 2 - player.y, 0);
             x = Math.max(game.width, x + this.map.width) - this.map.width;
@@ -220,8 +217,6 @@ window.onload = function() {
             window.healthbar.displace(x);
         }).bind(this));
 
-        // Animation for leafs(background)
-        leafs.tl.fadeOut(70).fadeIn(70).loop();
-  };
-  game.start();
+    };
+    game.start();
 };

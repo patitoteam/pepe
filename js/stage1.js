@@ -1,5 +1,5 @@
 var map;
-var mapaLevel1 =[
+var mapaLevel1 = [
     [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
     [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
     [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
@@ -11,91 +11,82 @@ var mapaLevel1 =[
     [8,8,8,1,1,3,-1,-1,-1,-1,2,1,1,8,8,8,8,8,3,-1,-1,2,1,1,3,-1,-1,-1,-1,2,1,1,1,1,1,1,3,-1,-1,-1,-1,-1,-1,-1,2,1,1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,8,8,8,8,8,8,8,8,8,8,-1,-1,2,8,8,8,8,8,8,8,8,8,8,8,8,4],
     [8,8,8,8,8,8,3,-1,-1,2,1,8,8,8,8,8,8,8,4,-1,-1,5,8,8,4,-1,-1,-1,-1,5,8,8,8,8,8,8,8,8,8,13,10,11,11,2,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
+
 function getFirstLevel(game, player) {
-  var bg = new Sprite(640, 320);
-  bg.image = game.assets['assets/bright-background.png'];
-  var leafs = new Sprite(640, 96);
-  leafs.image = game.assets['assets/bright-roof.png'];
-  var leafs2 = new Sprite(640, 96);
-  leafs2.image = game.assets['assets/bright-roof-2.png'];
+    /*Audio First Level*/
+    if(!game.firstTheme){
+        game.firstTheme = game.assets["music/plastic3_happy_game.mp3"].clone();
+        game.firstTheme.volume = 0.3;
+        game.firstTheme.play();
+    }
+
+    var bg = new Sprite(640, 320);
+    bg.image = game.assets['assets/bright-background.png'];
+    var leafs = new Sprite(640, 96);
+    leafs.image = game.assets['assets/bright-roof.png'];
+    var leafs2 = new Sprite(640, 96);
+    leafs2.image = game.assets['assets/bright-roof-2.png'];
 
 
-  game.rootScene.addChild(bg);
-  game.rootScene.addChild(leafs2);
-  game.rootScene.addChild(leafs);
+    game.rootScene.addChild(bg);
+    game.rootScene.addChild(leafs2);
+    game.rootScene.addChild(leafs);
 
-  game.bg = bg;
-  game.leafs2 = leafs2;
-  game.leafs = leafs;
+    game.bg = bg;
+    game.leafs2 = leafs2;
+    game.leafs = leafs;
 
-  var stage = new Group();
-  map = new Map(32, 32);
+    // Animation for leafs(background)
+    leafs.tl.fadeOut(70).fadeIn(70).loop();
 
-  game.map = map;
-  game.stage = stage;
+    var stage = new Group();
+    map = new Map(32, 32);
 
-  map.image = game.assets['assets/map-bright.png'];
-  map.loadData(mapaLevel1);
+    game.map = map;
+    game.stage = stage;
 
-  player.x = 30;
-  player.y = 0;
+    map.image = game.assets['assets/map-bright.png'];
 
-  player.resetPlayer();
-  player.jumpcnt = 10;
-  player.life = 10;
+    map.loadData(mapaLevel1);
 
-  stage.addChild(map);
-  stage.addChild(player);
-  stage.finalPosition = 3100;
-  game.currentLevel = 1;
+    player.x = 30;
+    player.y = 0;
 
+    player.resetPlayer();
+    player.jumpcnt = 10;
+    player.life = 10;
 
-  stage.addChild(new Enemy(32 * 30, 39 * 1, 32 , 'worm', 3, 1, true));
-  stage.addChild(new Enemy(32 * 18, 39 * 1, 32 , 'worm', 3, 1, true));
-  stage.addChild(new Enemy(32 * 17, 39 * 1, 32 , 'worm', 3, 1, true));
-  stage.addChild(new Enemy(32 * 79, 32 * 7, 32 , 'worm', 3, 1, true));
-
-  stage.addChild(new Enemy(32 * 96, 32 * 6, 32 , 'worm', 3, 1, true));
-  stage.addChild(new Enemy(32 * 94, 32 * 6, 32 , 'worm', 3, 1, true));
-  stage.addChild(new Enemy(32 * 43, 32 * 8, 32 , 'worm', 5, 1, true));
-  stage.addChild(new Enemy(32 * 40, 32 * 8, 32 , 'worm', 3, 1, true));
-
-
-  stage.addChild(new Enemy(32 * 57, 32 * 8, 16 , 'bee', 5, 0, true));
-  stage.addChild(new Enemy(32 * 70, 32 * 8, 16 , 'bee', 3, 0, true));
-  stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
-  stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 7, 0, true));
-  stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
-  stage.addChild(new Enemy(32 * 65, 32 * 8, 16 , 'bee', 10, 0, true));
-  stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, true));
-
+    stage.addChild(map);
+    stage.addChild(player);
+    stage.finalPosition = 3100;
+    game.currentLevel = 1;
 
     // Cherries.
     var cherries = [
-	{x: 32, y: 45},
-	{x: 64, y: 45},
-	{x: 96, y: 45},
-	{x: 27*(32), y: 5*(32)},
-	{x: 57*(32), y: 6*(32)},
-	{x: 62.2*(32), y: 5*(32)},
-	{x: 67*(32), y: 4*(32)}
+        {x: 32, y: 45},
+        {x: 64, y: 45},
+        {x: 96, y: 45},
+        {x: 27*(32), y: 5*(32)},
+        {x: 57*(32), y: 6*(32)},
+        {x: 62.2*(32), y: 5*(32)},
+        {x: 67*(32), y: 4*(32)}
     ];
 
     for(var i=0; i< cherries.length; i++) {
         stage.addChild(new Fruit({
-	    image: game.assets['assets/powerups/bright/cherry-sprite.png'],
-	    player: player,
-	    map: self.map,
-	    width: 16,
-	    height: 16,
-	    x: cherries[i].x,
-	    y: cherries[i].y,
-	    val: 2,
-	    stage: stage,
-	    game: game
+            image: game.assets['assets/powerups/bright/cherry-sprite.png'],
+            player: player,
+            map: self.map,
+            width: 16,
+            height: 16,
+            x: cherries[i].x,
+            y: cherries[i].y,
+            val: 2,
+            stage: stage,
+            game: game
         }));
     }
-
+    // Enemies.
     stage.addChild(new Enemy(32 * 30, 39 * 1, 32 , 'worm', 3, 1, true));
     stage.addChild(new Enemy(32 * 18, 39 * 1, 32 , 'worm', 3, 1, true));
     stage.addChild(new Enemy(32 * 17, 39 * 1, 32 , 'worm', 3, 1, true));
@@ -106,7 +97,6 @@ function getFirstLevel(game, player) {
     stage.addChild(new Enemy(32 * 43, 32 * 8, 32 , 'worm', 5, 1, true));
     stage.addChild(new Enemy(32 * 40, 32 * 8, 32 , 'worm', 3, 1, true));
 
-
     stage.addChild(new Enemy(32 * 57, 32 * 8, 16 , 'bee', 5, 0, true));
     stage.addChild(new Enemy(32 * 70, 32 * 8, 16 , 'bee', 3, 0, true));
     stage.addChild(new Enemy(32 * 60, 32 * 8, 16 , 'bee', 8, 0, true));
@@ -116,9 +106,7 @@ function getFirstLevel(game, player) {
     stage.addChild(new Enemy(32 * 61, 32 * 8, 32 , 'honeycomb', 0, 0, false));
 
     window.healthbar = new HealthBar({
-      stage  : stage,
+        stage  : stage
     });
-
-
-  return stage;
+    return stage;
 }
