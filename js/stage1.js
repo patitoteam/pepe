@@ -86,10 +86,11 @@ function getFirstLevel(game, player) {
             game: game
         }));
     }
+
     // Enemies.
-    stage.addChild(new Enemy(32 * 30, 39 * 1, 32 , 'worm', 3, 1, true));
-    stage.addChild(new Enemy(32 * 18, 39 * 1, 32 , 'worm', 3, 1, true));
-    stage.addChild(new Enemy(32 * 17, 39 * 1, 32 , 'worm', 3, 1, true));
+    stage.addChild(new Enemy(32 * 30, 32 * 1, 32 , 'worm', 3, 1, true));
+    stage.addChild(new Enemy(32 * 18, 32 * 1, 32 , 'worm', 3, 1, true));
+    stage.addChild(new Enemy(32 * 17, 32 * 1, 32 , 'worm', 3, 1, true));
     stage.addChild(new Enemy(32 * 79, 32 * 7, 32 , 'worm', 3, 1, true));
 
     stage.addChild(new Enemy(32 * 96, 32 * 6, 32 , 'worm', 3, 1, true));

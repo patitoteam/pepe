@@ -1,10 +1,9 @@
 enchant();
 
 var info = document.getElementById('information');
-info.innerHTML = '';
+info.innerText = '';
 
 var game = new Game(640, 320);
-
 game.preload(
     'assets/apple.png',
     'assets/bright-roof.png',
@@ -99,6 +98,35 @@ window.onload = function() {
          });
          */
 
+        /*****************************Touch, conflicts with keyboard********************************/
+        var touches = [];
+        window.addEventListener(enchant.Event.TOUCH_START, function(e){
+            var t = e.changedTouches;
+            for(var i = 0; i < t.length; i++){
+                var x = t[i].pageX;
+                var y = t[i].pageY;
+                touches[t[i].identifier] = new Point(x, y);
+            }
+        }, false);
+
+        window.addEventListener(enchant.Event.TOUCH_END, function(e){
+            var t = e.changedTouches;
+            for(var i = 0; i < t.length; i++){
+                touches[t[i].identifier] = null;
+            }
+
+        }, false);
+
+        window.addEventListener(enchant.Event.TOUCH_MOVE, function(e){
+            e.preventDefault();
+            var t = e.changedTouches;
+            for(var i = 0; i < t.length; i++){
+                touches[t[i].identifier].x = t[i].pageX;
+                touches[t[i].identifier].y = t[i].pageY;
+            }
+        }, false);
+        /*************************************************************/
+
         game.rootScene.addEventListener(Event.ENTER_FRAME, (function(e) {
             // Realiza el scroll del background
             var x = Math.min((game.width - 16) / 2 - player.x, 0);
@@ -109,8 +137,44 @@ window.onload = function() {
             this.stage.y = y;
             window.healthbar.setPoints(player.life);
             window.healthbar.displace(x);
+
+            /*************************Touch, conflicts with keyboard***********************/
+            var ancho = game.width ;
+            var a = ancho / 4;
+            var b = ancho / 2;
+
+            //info.innerText = game.input.left + ' ' + game.input.right + ' ' + game.input.up;
+            var left = false, right = false, up = false;
+            /*var bleft = game.input.left,
+                bright = game.input.right,
+                bup = game.input.up;
+*/
+            for(var i = 0; i < touches.length; i++){
+                if(touches[i]){
+                    if(touches[i].x < a)
+                        left = true;
+                    else if(touches[i].x < b)
+                        right = true;
+                    else
+                        up = true;
+                }
+            }
+
+            game.input.up = up;
+            game.input.right = right;
+            game.input.left = left;
+
+            //info.innerText = game.input.left + ' ' + game.input.right + ' ' + game.input.up;
+            /************************************************/
         }).bind(this));
 
     };
+
+
     game.start();
 };
+
+function Point(x,y){
+    this.x=x||0;
+    this.y=y||0;
+}
