@@ -4,6 +4,7 @@ var info = document.getElementById('information');
 info.innerText = '';
 
 var game = new Game(640, 320);
+
 game.preload(
     'assets/apple.png',
     'assets/bright-roof.png',
@@ -40,9 +41,7 @@ game.preload(
     'worm.png',
     'zombie.png'
 );
-
 game.fps = 15;
-
 var player;
 var self;
 
@@ -99,6 +98,7 @@ window.onload = function() {
          */
 
         /*****************************Touch, conflicts with keyboard********************************/
+        /*
         var touches = [];
         window.addEventListener(enchant.Event.TOUCH_START, function(e){
             var t = e.changedTouches;
@@ -125,6 +125,35 @@ window.onload = function() {
                 touches[t[i].identifier].y = t[i].pageY;
             }
         }, false);
+        var ancho = game.width ;
+        var a = ancho / 4;
+        var b = ancho / 2;
+
+        var surfacepress = new Surface(32, 32);
+        surfacepress.context.fillStyle = 'rgba(0, 0, 0, 0.15)';
+        surfacepress.context.fillRect(0, 0, 32, 32);
+        var surfaceunpress = new Surface(32, 32);
+        surfaceunpress.context.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        surfaceunpress.context.fillRect(0, 0, 32, 32);
+
+        var btnup = new Sprite(32, 50);
+        btnup.image = surfaceunpress;
+        btnup.width = b;
+        btnup.x = b;
+        btnup.y = game.height - btnup.height;
+
+        var btnleft = new Sprite(32, 50);
+        btnleft.image = surfaceunpress;
+        btnleft.width = a;
+        btnleft.x = 0;
+        btnleft.y = game.height - btnleft.height;
+
+        var btnright = new Sprite(32, 50);
+        btnright.image = surfaceunpress;
+        btnright.width = a;
+        btnright.x = a;
+        btnright.y = game.height - btnright.height;
+        */
         /*************************************************************/
 
         game.rootScene.addEventListener(Event.ENTER_FRAME, (function(e) {
@@ -133,22 +162,16 @@ window.onload = function() {
             var y = Math.min((game.height - 16) / 2 - player.y, 0);
             x = Math.max(game.width, x + this.map.width) - this.map.width;
             y = Math.max(game.height, y + this.map.height) - this.map.height;
+
             this.stage.x = x;
             this.stage.y = y;
             window.healthbar.setPoints(player.life);
             window.healthbar.displace(x);
 
             /*************************Touch, conflicts with keyboard***********************/
-            var ancho = game.width ;
-            var a = ancho / 4;
-            var b = ancho / 2;
 
-            //info.innerText = game.input.left + ' ' + game.input.right + ' ' + game.input.up;
+            /*
             var left = false, right = false, up = false;
-            /*var bleft = game.input.left,
-                bright = game.input.right,
-                bup = game.input.up;
-*/
             for(var i = 0; i < touches.length; i++){
                 if(touches[i]){
                     if(touches[i].x < a)
@@ -164,13 +187,27 @@ window.onload = function() {
             game.input.right = right;
             game.input.left = left;
 
-            //info.innerText = game.input.left + ' ' + game.input.right + ' ' + game.input.up;
+            if(!game.currentStage.btnup) game.currentStage.addChild(btnup);
+            if(!game.currentStage.btnright) game.currentStage.addChild(btnright);
+            if(!game.currentStage.btnleft) game.currentStage.addChild(btnleft);
+
+            if(up)btnup.image = surfacepress;
+            else btnup.image = surfaceunpress;
+
+            if(right)btnright.image = surfacepress;
+            else btnright.image = surfaceunpress;
+
+            if(left)btnleft.image = surfacepress;
+            else btnleft.image = surfaceunpress;
+
+            btnup.x = -x + b;
+            btnleft.x = -x;
+            btnright.x = -x + a;
+            */
             /************************************************/
+
         }).bind(this));
-
     };
-
-
     game.start();
 };
 
